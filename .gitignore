@@ -1,0 +1,13 @@
+*.aps
+*.pdb
+*.ilk
+*.lib
+*.config
+*.exp
+*.obj
+*.log
+*.pch
+*.log
+*.tlog
+bin/
+obj/
