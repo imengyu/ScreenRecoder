@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\interface">
+      <UniqueIdentifier>{7e4ba1ec-5ef1-4620-b241-e7dad85dd38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{e8d79773-b595-4bf2-a847-67c0d42678db}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="base\system_info.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="IAudioCapture.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IMediaFileRecorder.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IScreeAudioRecord.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IScreenGrabber.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="CMediaFileRecorder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreenAudioRecord.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreenDXGrabber.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreenGdiGrabber.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWASAudioCapture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWAVEAudioCapture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MediaRecordTypeDef.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IScreenAudioRecord_C.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="base\system_info.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioCaptureFactory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CMediaFileRecorder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreenAudioRecord.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreenDXGrabber.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreenGdiGrabber.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CWASAudioCapture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CWAVEAudioCapture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenGrabberFactory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreenAudioRecord_C.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ScreenRecoder.Core.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
