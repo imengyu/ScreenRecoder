@@ -30,10 +30,12 @@ namespace ScreenRecoder.App
         public void SetPauseIcon(Image i)
         {
             btn_pause.Icon = i;
+            btn_pause.Invalidate();
         }
         public void SetStopIcon(Image i)
         {
             btn_stop.Icon = i;
+            btn_stop.Invalidate();
         }
 
         private void btn_stop_BtnClick(object sender, EventArgs e)
@@ -59,6 +61,16 @@ namespace ScreenRecoder.App
         {
             Height = 36;
             lb_time.Height = 36;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= API.WS_EX_TOOLWINDOW;
+                return cp;
+            }
         }
     }
 }

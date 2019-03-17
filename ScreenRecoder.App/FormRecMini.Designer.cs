@@ -55,6 +55,7 @@
             this.btn_huge.BackColor = System.Drawing.Color.Transparent;
             this.btn_huge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(90)))));
             this.btn_huge.Icon = global::ScreenRecoder.App.Properties.Resources.ico_huge;
+            this.btn_huge.IconSize = new System.Drawing.Size(26, 26);
             this.btn_huge.Light = false;
             this.btn_huge.Location = new System.Drawing.Point(167, 0);
             this.btn_huge.Name = "btn_huge";
@@ -69,6 +70,7 @@
             this.btn_pause.BackColor = System.Drawing.Color.Maroon;
             this.btn_pause.HoverColor = System.Drawing.Color.IndianRed;
             this.btn_pause.Icon = global::ScreenRecoder.App.Properties.Resources.ico_pause_small;
+            this.btn_pause.IconSize = new System.Drawing.Size(16, 16);
             this.btn_pause.Light = false;
             this.btn_pause.Location = new System.Drawing.Point(36, 0);
             this.btn_pause.Name = "btn_pause";
@@ -83,6 +85,7 @@
             this.btn_stop.BackColor = System.Drawing.Color.Transparent;
             this.btn_stop.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(90)))));
             this.btn_stop.Icon = global::ScreenRecoder.App.Properties.Resources.ico_stop_small;
+            this.btn_stop.IconSize = new System.Drawing.Size(16, 16);
             this.btn_stop.Light = false;
             this.btn_stop.Location = new System.Drawing.Point(0, 0);
             this.btn_stop.Name = "btn_stop";
@@ -96,7 +99,7 @@
             // 
             this.lb_time.AutoEllipsis = true;
             this.lb_time.BackColor = System.Drawing.Color.DarkRed;
-            this.lb_time.Font = new System.Drawing.Font("SF Square Head", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_time.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_time.ForeColor = System.Drawing.Color.White;
             this.lb_time.Location = new System.Drawing.Point(72, 0);
             this.lb_time.Name = "lb_time";
@@ -118,6 +121,7 @@
             this.Name = "FormRecMini";
             this.ShowInTaskbar = false;
             this.Text = "FormRecMini";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormRecMini_Load);
             this.pl_rec.ResumeLayout(false);
             this.ResumeLayout(false);

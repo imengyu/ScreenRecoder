@@ -9,6 +9,7 @@ namespace ScreenRecoder.App
     {
         public static FormMain formMain;
 
+        private IntPtr recoder_update_callback_ptr = IntPtr.Zero;
         private bool exit = false;
 
         public FormMain(string[] agrs)
@@ -26,9 +27,12 @@ namespace ScreenRecoder.App
         //初始化和退出
         private void FormMain_Load(object sender, EventArgs e)
         {
+            //创建
+            recoder_update_callback_ptr = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate((Recorder.UpdateCallback)recoder_update);
+
             //创建录制底层库实例
             Recorder.RecoderCreate();
-            Recorder.RecoderSetUpdateCallback(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate((Recorder.UpdateCallback)recoder_update));
+            Recorder.RecoderSetUpdateCallback(recoder_update_callback_ptr);
 
             API.IniWriteValue("AppSetting", "LastWindow", Handle.ToInt32().ToString());
 
@@ -67,6 +71,15 @@ namespace ScreenRecoder.App
             if (Settings.quality > 2)
                 Settings.quality = 1;
 
+            //设置默认保存路径
+            if (Settings.SaveDir != "DEFAULT" && !System.IO.Directory.Exists(Settings.SaveDir))
+            {
+                Settings.SaveDir = API.GetDefExportDir();
+                //如果默认目录不存在则创建
+                if (!System.IO.Directory.Exists(Settings.SaveDir))
+                    System.IO.Directory.CreateDirectory(Settings.SaveDir);
+            }
+
             if (Settings.fullscreen) API.WindowHide(formRect.Handle);
 
             //设置显示到控件
@@ -85,8 +98,7 @@ namespace ScreenRecoder.App
             hotKey_showhide.SetKeys(Settings.hotkey_showehide);
             hotKey_start.SetKeys(Settings.hotkey_start);
             hotKey_stop.SetKeys(Settings.hotkey_stop);
-            if (Settings.VideoType == "DEFAULT")
-                combo_format.SelectedIndex = 0;
+            if (Settings.VideoType == "DEFAULT") combo_format.SelectedIndex = 0;
             else
             {
                 try
@@ -143,6 +155,8 @@ namespace ScreenRecoder.App
 
             Height = 55;
             lb_time.Height = 55;
+            
+
         }
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -205,7 +219,12 @@ namespace ScreenRecoder.App
         //最小化 关闭 按钮
         private void btn_min_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
+            if ((Recorder.State == Recorder.Record_State.RECORDING || Recorder.State == Recorder.Record_State.SUSPENDED) && !Settings.fullscreen)
+            {
+                API.WindowHide(Handle);
+                API.WindowShow(formRecMini.Handle);
+            }
+            else WindowState = FormWindowState.Minimized;
         }
         private void btn_close_Click(object sender, EventArgs e)
         {
@@ -336,8 +355,7 @@ namespace ScreenRecoder.App
             if (Recorder.State == Recorder.Record_State.NOT_BEGIN)
             {
                 //读取设置
-                if (Settings.fullscreen)
-                    Recorder.RecoderSetCaptureRect(0, 0, 0, 0);
+                if (Settings.fullscreen) Recorder.RecoderSetCaptureRect(0, 0, 0, 0);
                 else
                 {
                     int x, y, w, h;
@@ -353,6 +371,7 @@ namespace ScreenRecoder.App
 
                 if (Settings.SaveDir != "DEFAULT" && System.IO.Directory.Exists(Settings.SaveDir))
                     Recorder.RecoderSetOutFileDir(Settings.SaveDir);
+
                 Recorder.RecoderSetCaptureFrameRate(Settings.frame_rate);
                 Recorder.RecordMouse = Settings.recmic;
                 Recorder.RecordSound = Settings.recsound;
@@ -366,7 +385,10 @@ namespace ScreenRecoder.App
         {
             if (Recorder.State == Recorder.Record_State.RECORDING
                 || Recorder.State == Recorder.Record_State.SUSPENDED)
+            {
                 Recorder.RecoderStopButton();
+                recoder_update(Recorder.UpdateCallbackID.OnStop, IntPtr.Zero);
+            }
             //结束之后对话框提示
             if (Settings.notify_when_finish && !exit)
             {
@@ -390,11 +412,6 @@ namespace ScreenRecoder.App
         {
             if (Recorder.State != Recorder.Record_State.NOT_BEGIN)
                 Recorder.RecoderPauseButton();
-        }
-        //关于按钮
-        private void btn_about_Click(object sender, EventArgs e)
-        {
-            new FormAbout().Show(this);
         }
 
         //底层录制库 状态改变回调
@@ -656,9 +673,11 @@ namespace ScreenRecoder.App
             btn_softset.BackColor = Color.OrangeRed;
             btn_hotkeyset.BackColor = Color.Tomato;
             btn_recset.BackColor = Color.Tomato;
+            btn_about.BackColor = Color.Tomato;
             pl_hotkeyset.Visible = false;
             pl_recset.Visible = false;
             pl_softset.Visible = true;
+            pl_about.Visible = false;
         }
         private void btn_recset_Click(object sender, EventArgs e)
         {
@@ -666,18 +685,34 @@ namespace ScreenRecoder.App
             btn_softset.BackColor = Color.Tomato;
             btn_hotkeyset.BackColor = Color.Tomato;
             btn_recset.BackColor = Color.OrangeRed;
+            btn_about.BackColor = Color.Tomato;
             pl_hotkeyset.Visible = false;
             pl_recset.Visible = true;
             pl_softset.Visible = false;
+            pl_about.Visible = false;
         }
         private void btn_hotkeyset_Click(object sender, EventArgs e)
         {
             btn_softset.BackColor = Color.Tomato;
             btn_hotkeyset.BackColor = Color.OrangeRed;
             btn_recset.BackColor = Color.Tomato;
+            btn_about.BackColor = Color.Tomato;
             pl_hotkeyset.Visible = true;
             pl_recset.Visible = false;
             pl_softset.Visible = false;
+            pl_about.Visible = false;
+        }       
+        //关于按钮
+        private void btn_about_Click(object sender, EventArgs e)
+        {
+            btn_softset.BackColor = Color.Tomato;
+            btn_hotkeyset.BackColor = Color.Tomato;
+            btn_recset.BackColor = Color.Tomato;
+            btn_about.BackColor = Color.OrangeRed;
+            pl_about.Visible = true;
+            pl_recset.Visible = false;
+            pl_softset.Visible = false;
+            pl_hotkeyset.Visible = false;
         }
 
         protected override void WndProc(ref Message m)

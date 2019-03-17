@@ -23,7 +23,7 @@
     <ProjectGuid>{3EAA2D52-0606-4355-9138-ADB449EB118B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ScreenRecoder</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\主数据库\编程\范例\mono-master\msvc\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\主数据库\编程\范例\mono-master\msvc\build\sgen\Win32\lib\Release;E:\WinProjects\ScreenRecoder\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Programming\Example\mono-master\msvc\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>E:\Programming\Example\mono-master\msvc\build\sgen\Win32\lib\Release;$(SolutionDir)$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\主数据库\编程\范例\mono-master\msvc\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>E:\主数据库\编程\范例\mono-master\msvc\build\sgen\Win32\lib\Release;E:\WinProjects\ScreenRecoder\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Programming\Example\mono-master\msvc\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>E:\Programming\Example\mono-master\msvc\build\sgen\Win32\lib\Release;$(SolutionDir)$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -155,7 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AdHookApi.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScreenRecoder.h" />
     <ClInclude Include="stdafx.h" />
@@ -163,7 +162,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AdHookApi.cpp" />
     <ClCompile Include="ScreenRecoder.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -11,8 +11,10 @@ namespace ScreenRecoder.App
         public IconButton()
         {
             InitializeComponent();
+            IconSize = new Size(32, 32);
         }
 
+        public Size IconSize { get; set; }
         public Color PressedColor { get; set; }
         public Color HoverColor { get; set; }
         public Image Icon { get; set; }
@@ -36,15 +38,13 @@ namespace ScreenRecoder.App
         {
             BackColor = HoverColor;
         }
-
         private void IconButton_MouseClick(object sender, MouseEventArgs e)
         {
             BtnClick?.Invoke(sender, e);
         }
-
         private void IconButton_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Icon, Width / 2 - Icon.Width / 2, Height / 2 - Icon.Height / 2, Icon.Width, Icon.Height);
+            e.Graphics.DrawImage(Icon, Width / 2 - IconSize.Width / 2, Height / 2 - IconSize.Height / 2, IconSize.Width, IconSize.Height);
         }
     }
 }

@@ -13,5 +13,9 @@
 bin/
 obj/
 .vs/
+Debug/
+Release/
 *.ipdb
 *.iobj
+*.mp4
+

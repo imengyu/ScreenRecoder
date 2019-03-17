@@ -8,6 +8,8 @@ namespace ScreenRecoder.App
     //一些api
     public static class API
     {
+        public const int WS_EX_TOOLWINDOW = 0x00000080;
+
         public struct POINT
         {
             public POINT(int x,int y)
@@ -83,29 +85,29 @@ namespace ScreenRecoder.App
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void WindowHide(IntPtr hWnd);*/
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void WindowSetForeground(IntPtr hWnd);        
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void Test();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern string GetDefExportDir();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void WindowMove(IntPtr hWnd);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void WindowShow(IntPtr hWnd);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void WindowHide(IntPtr hWnd);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern bool WindowIsVisible(IntPtr hWnd);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern string GetInIPath();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void AppOpenFile(string path);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void WindowSetForeground(IntPtr hWnd);        
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void Test();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern string GetDefExportDir();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void WindowMove(IntPtr hWnd);
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void WindowShow(IntPtr hWnd);
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void WindowHide(IntPtr hWnd);
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern bool WindowIsVisible(IntPtr hWnd);
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern string GetInIPath();
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void StartNewWhenExit();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern bool RegisterHotKey(IntPtr hWnd, int i, int k1, int k2, int k3);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void UnRegisterAllHotKey(IntPtr hWnd);
 
     }

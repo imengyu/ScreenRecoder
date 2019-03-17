@@ -54,6 +54,7 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Red;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(41, 13);
@@ -133,6 +134,7 @@
             this.Text = "FormRect";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
+            this.EnabledChanged += new System.EventHandler(this.FormRect_EnabledChanged);
             this.LocationChanged += new System.EventHandler(this.FormRect_LocationChanged);
             this.SizeChanged += new System.EventHandler(this.FormRect_SizeChanged);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pl_bg_MouseDown);

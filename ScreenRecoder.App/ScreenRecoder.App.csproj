@@ -51,12 +51,6 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="FileBorserDialog.cs" />
-    <Compile Include="FormAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAbout.Designer.cs">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormChooseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recorder.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="FormAbout.resx">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormChooseWindow.resx">
       <DependentUpon>FormChooseWindow.cs</DependentUpon>
     </EmbeddedResource>

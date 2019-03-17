@@ -19,7 +19,7 @@ namespace ScreenRecoder.App
                 sizePaint = false;
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
-            SolidBrush b = new SolidBrush(Color.Red);
+            SolidBrush b = new SolidBrush(BaseColor);
             g.FillRectangle(b, new Rectangle(0, 0, 50, 10));
             g.FillRectangle(b, new Rectangle(0, 10, 10, 40));
             g.FillRectangle(b, new Rectangle(Width - 50, 0, 50, 10));
@@ -78,6 +78,8 @@ namespace ScreenRecoder.App
         //鼠标距离边框<SIZE_BORDER大小就认为可以调节大小
         const int SIZE_BORDER = 10;
         const int SIZE_BORDER_2 = 20;
+
+        Color BaseColor = Color.Red;
 
         private void pl_bg_MouseDown(object sender, MouseEventArgs e)
         {            
@@ -257,7 +259,7 @@ namespace ScreenRecoder.App
         }
         private void label3_MouseLeave(object sender, EventArgs e)
         {
-            label3.BackColor = Color.Red;
+            label3.BackColor = BaseColor;
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -269,7 +271,7 @@ namespace ScreenRecoder.App
         }
         private void label4_MouseLeave(object sender, EventArgs e)
         {
-            label4.BackColor = Color.Red;
+            label4.BackColor = BaseColor;
         }
         private void label4_Click(object sender, EventArgs e)
         {
@@ -292,6 +294,40 @@ namespace ScreenRecoder.App
             }
             if (mainShow) API.WindowShow(FormMain.formMain.Handle);
             API.WindowShow(Handle);
+        }
+
+        private void FormRect_EnabledChanged(object sender, EventArgs e)
+        {
+            if(!Enabled)
+            {
+                label1.BackColor = Color.Gray;
+                label2.BackColor = Color.Gray;
+                label3.BackColor = Color.Gray;
+                label4.BackColor = Color.Gray;
+                pictureBox1.BackColor = Color.Gray;
+                BaseColor = Color.Gray;
+                Invalidate();
+            }
+            else
+            {
+                label1.BackColor = Color.Red;
+                label2.BackColor = Color.Red;
+                label3.BackColor = Color.Red;
+                label4.BackColor = Color.Red;
+                pictureBox1.BackColor = Color.Red;
+                BaseColor = Color.Red;
+                Invalidate();
+            }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= API.WS_EX_TOOLWINDOW;
+                return cp;
+            }
         }
     }
 }

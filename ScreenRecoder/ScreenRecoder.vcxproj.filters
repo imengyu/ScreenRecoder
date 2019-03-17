@@ -30,9 +30,6 @@
     <ClInclude Include="StringHlp.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdHookApi.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,9 +39,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="StringHlp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AdHookApi.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
