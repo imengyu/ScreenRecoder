@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.pl_recset = new System.Windows.Forms.Panel();
             this.radio_rect_rec = new System.Windows.Forms.RadioButton();
@@ -84,6 +85,7 @@
             this.tab_soft = new ScreenRecoder.App.Controls.TabButton();
             this.tab_hotkeys = new ScreenRecoder.App.Controls.TabButton();
             this.tab_recorder = new ScreenRecoder.App.Controls.TabButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pl_recset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_open_folder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_choosedir)).BeginInit();
@@ -204,6 +206,7 @@
             this.btn_open_folder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_open_folder.TabIndex = 34;
             this.btn_open_folder.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_open_folder, "打开输出目录");
             this.btn_open_folder.ToolTipText = null;
             this.btn_open_folder.Click += new System.EventHandler(this.btn_open_folder_Click);
             // 
@@ -244,12 +247,13 @@
             this.btn_choosedir.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btn_choosedir.DownImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_p;
             this.btn_choosedir.HoverImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_h;
-            this.btn_choosedir.Location = new System.Drawing.Point(125, 262);
+            this.btn_choosedir.Location = new System.Drawing.Point(114, 262);
             this.btn_choosedir.Name = "btn_choosedir";
             this.btn_choosedir.NormalImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_n;
             this.btn_choosedir.Size = new System.Drawing.Size(16, 16);
             this.btn_choosedir.TabIndex = 21;
             this.btn_choosedir.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_choosedir, "选择输出目录");
             this.btn_choosedir.ToolTipText = null;
             this.btn_choosedir.Click += new System.EventHandler(this.btn_choosedir_Click);
             // 
@@ -737,10 +741,10 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.panel1.Controls.Add(this.btn_ok);
             this.panel1.Controls.Add(this.btn_reset_default);
-            this.panel1.Controls.Add(this.pl_hotkeyset);
-            this.panel1.Controls.Add(this.pl_about);
             this.panel1.Controls.Add(this.pl_softset);
             this.panel1.Controls.Add(this.pl_recset);
+            this.panel1.Controls.Add(this.pl_hotkeyset);
+            this.panel1.Controls.Add(this.pl_about);
             this.panel1.Location = new System.Drawing.Point(119, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(510, 406);
@@ -915,5 +919,6 @@
         public System.Windows.Forms.RadioButton check_fullscreen;
         public System.Windows.Forms.CheckBox check_recsound;
         public System.Windows.Forms.CheckBox check_recmic;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

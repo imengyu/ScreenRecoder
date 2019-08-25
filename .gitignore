@@ -13,8 +13,7 @@ Debug/
 bin/
 obj/
 .vs/
-Debug/
-Release/
+Release/output/
 *.ipdb
 *.iobj
 *.mp4
