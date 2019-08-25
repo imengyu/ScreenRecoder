@@ -10,6 +10,14 @@ namespace ScreenRecoder.App
     {
         public const int WS_EX_TOOLWINDOW = 0x00000080;
 
+        public const int WM_HOTKEY = 0x0312;
+        public const int WM_DISPLAYCHANGE = 0x007E;
+
+        public const int SM_CXSCREEN = 0;
+        public const int SM_CYSCREEN = 1;
+        public const int SM_CXFULLSCREEN = 16;
+        public const int SM_CYFULLSCREEN = 17;
+
         public struct POINT
         {
             public POINT(int x,int y)
@@ -51,6 +59,8 @@ namespace ScreenRecoder.App
         public static extern int GetWindowRect(IntPtr hwnd, out RECT lpRect);
         [DllImport("user32.dll")]
         public static extern IntPtr GetDesktopWindow();
+        [DllImport("user32.dll")]
+        public static extern int GetSystemMetrics(int index);
 
         private static string inipath = "";
 
@@ -85,12 +95,18 @@ namespace ScreenRecoder.App
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void WindowHide(IntPtr hWnd);*/
 
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void AppPlayTip(string name, bool ansyc);
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void AppOpenFile(string path);
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void WindowSetForeground(IntPtr hWnd);        
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void Test();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern string GetStartDir();
+        
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern string GetDefExportDir();
         [MethodImpl(MethodImplOptions.InternalCall)]

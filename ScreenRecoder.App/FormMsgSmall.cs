@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ScreenRecoder.App
@@ -36,6 +37,7 @@ namespace ScreenRecoder.App
 
         private void FormMsg_Load(object sender, EventArgs e)
         {
+            lb_window_title.Text = Text;
             Left = Screen.PrimaryScreen.WorkingArea.Width - Width - 10;
             Top = Screen.PrimaryScreen.WorkingArea.Height - Height - 10;
         }
@@ -44,6 +46,34 @@ namespace ScreenRecoder.App
         {
             timer1.Stop();
             Close();
+        }
+
+        //窗口背景和边框绘画 
+        private Pen borderPen = new Pen(Color.FromArgb(56, 56, 56));
+
+        private void FormMsgSmall_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
+        }
+        private void FormMsgSmall_TextChanged(object sender, EventArgs e)
+        {
+            lb_window_title.Text = Text;
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+        private void btn_ok_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void pl_title_MouseDown(object sender, MouseEventArgs e)
+        {
+            API.WindowMove(Handle);
         }
     }
 }

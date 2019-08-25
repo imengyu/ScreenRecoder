@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace ScreenRecoder.App
@@ -11,6 +12,7 @@ namespace ScreenRecoder.App
 
         private IntPtr recoder_update_callback_ptr = IntPtr.Zero;
         private bool exit = false;
+        private Size screenSize = new Size();
 
         public FormMain(string[] agrs)
         {
@@ -23,10 +25,17 @@ namespace ScreenRecoder.App
         FormRectRecing formRectRecing = null;
         //迷你窗口
         FormRecMini formRecMini = null;
+        //设置窗口
+        FormSettings formSettings = null;
 
         //初始化和退出
         private void FormMain_Load(object sender, EventArgs e)
         {
+            //加载字体
+            PrivateFontCollection prc = new PrivateFontCollection();
+            prc.AddFontFile(API.GetStartDir() +  "\\font\\bahnschrift.ttf");
+            lb_time.Font = new Font(prc.Families[0], 18);
+
             //创建
             recoder_update_callback_ptr = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate((Recorder.UpdateCallback)recoder_update);
 
@@ -43,30 +52,32 @@ namespace ScreenRecoder.App
             formRectRecing.Show();
 
             formRecMini = new FormRecMini();
+            formRecMini.lb_time.Font = new Font(prc.Families[0], 13);
             formRecMini.Show();
 
             //隐藏正在录制框
             API.WindowHide(formRectRecing.Handle);
             //隐藏迷你窗口
             API.WindowHide(formRecMini.Handle);
-            
+
+            screenSize = new Size(API.GetSystemMetrics(API.SM_CXSCREEN), API.GetSystemMetrics(API.SM_CYSCREEN));
 
             //加载设置
             Settings.LoadSettings();
             //检查设置是否合法
             if (Settings.frame_rate <= 0 || Settings.frame_rate > 30)
                 Settings.frame_rate = 15;
-            if (Settings.last_appx <= 0 || Settings.last_appx > Screen.PrimaryScreen.Bounds.Width)
+            if (Settings.last_appx <= 0 || Settings.last_appx > screenSize.Width)
                 Settings.last_appx = 0;
-            if (Settings.last_appy <= 0 || Settings.last_appy > Screen.PrimaryScreen.Bounds.Height)
+            if (Settings.last_appy <= 0 || Settings.last_appy > screenSize.Height)
                 Settings.last_appy = 0;
-            if (Settings.last_x <= 0 || Settings.last_x > Screen.PrimaryScreen.Bounds.Width)
-                Settings.last_x = 0;
-            if (Settings.last_y <= 0 || Settings.last_y > Screen.PrimaryScreen.Bounds.Height)
-                Settings.last_y = 0;
-            if (Settings.last_w <= 160 || Settings.last_w > Screen.PrimaryScreen.Bounds.Width)
+            if (Settings.last_x <= 0 || Settings.last_x > screenSize.Width)
+                Settings.last_x = screenSize.Width - Width - 10;
+            if (Settings.last_y <= 0 || Settings.last_y > screenSize.Height)
+                Settings.last_y = screenSize.Height - Height - 10;
+            if (Settings.last_w <= 160 || Settings.last_w > screenSize.Width)
                 Settings.last_w = 0;
-            if (Settings.last_h <= 92 || Settings.last_h > Screen.PrimaryScreen.Bounds.Height)
+            if (Settings.last_h <= 92 || Settings.last_h > screenSize.Height)
                 Settings.last_h = 0;
             if (Settings.quality > 2)
                 Settings.quality = 1;
@@ -79,48 +90,25 @@ namespace ScreenRecoder.App
                 if (!System.IO.Directory.Exists(Settings.SaveDir))
                     System.IO.Directory.CreateDirectory(Settings.SaveDir);
             }
-
             if (Settings.fullscreen) API.WindowHide(formRect.Handle);
-
-            //设置显示到控件
-            check_hide_whenrec.Checked = Settings.hide_wnd_when_rec;
-            check_usemini_inrec.Checked = Settings.show_mini_recing;
-            check_recmic.Checked = Settings.recmic;
-            check_recsound.Checked = Settings.recsound;
-            check_exit_min.Checked = !Settings.close_act_exit;
-            check_fullscreen.Checked = Settings.fullscreen;
-            numeric_frame_rate.Value = Settings.frame_rate;
-            combo_quality.SelectedIndex = Settings.quality;
-            check_rem_pos.Checked = Settings.rempos;
-            textBox_export_dir.Text = Settings.SaveDir;
-            combo_format.SelectedItem = Settings.VideoType;
-            hotKey_pause.SetKeys(Settings.hotkey_pause);
-            hotKey_showhide.SetKeys(Settings.hotkey_showehide);
-            hotKey_start.SetKeys(Settings.hotkey_start);
-            hotKey_stop.SetKeys(Settings.hotkey_stop);
-            if (Settings.VideoType == "DEFAULT") combo_format.SelectedIndex = 0;
-            else
+            if (Settings.VideoType != "DEFAULT")
             {
                 try
                 {
                     Recorder.RecordFormat = (Recorder.VIDEO_FORMAT)Enum.Parse(typeof(Recorder.VIDEO_FORMAT), Settings.VideoType);
-                    combo_format.SelectedIndex = (int)Recorder.RecordFormat;
                 }
-                catch
-                {
-
-                }
+                catch  {}
             }
 
             //注册热键
             bool regsuccess = true;
-            if (!hotKey_start.IsEmepty())
+            if (!HotKeySelecter.IsEmepty(Settings.hotkey_start))
                 regsuccess = API.RegisterHotKey(Handle, 0, (int)Settings.hotkey_start[0], (int)Settings.hotkey_start[1], (int)Settings.hotkey_start[2]);
-            if (!hotKey_pause.IsEmepty())
+            if (!HotKeySelecter.IsEmepty(Settings.hotkey_pause))
                 regsuccess = API.RegisterHotKey(Handle, 1, (int)Settings.hotkey_pause[0], (int)Settings.hotkey_pause[1], (int)Settings.hotkey_pause[2]);
-            if (!hotKey_stop.IsEmepty())
+            if (!HotKeySelecter.IsEmepty(Settings.hotkey_stop))
                 regsuccess = API.RegisterHotKey(Handle, 2, (int)Settings.hotkey_stop[0], (int)Settings.hotkey_stop[1], (int)Settings.hotkey_stop[2]);
-            if (!hotKey_showhide.IsEmepty())
+            if (!HotKeySelecter.IsEmepty(Settings.hotkey_showehide))
                 regsuccess = API.RegisterHotKey(Handle, 3, (int)Settings.hotkey_showehide[0], (int)Settings.hotkey_showehide[1], (int)Settings.hotkey_showehide[2]);
 
             //注册热键失败提示
@@ -153,10 +141,12 @@ namespace ScreenRecoder.App
                 formRectRecing.Height = Settings.last_h;
             }
 
-            Height = 55;
-            lb_time.Height = 55;
-            
+            Height = 62;
+            if (Settings.show_preview) SePreviewState(); 
 
+            toggle_fullscreen.Checked = Settings.fullscreen;
+            btn_rec_mouse.Image = Settings.recmic ? Properties.Resources.ico_mouse_on : Properties.Resources.ico_mouse_off;
+            btn_rec_sound.Image = Settings.recsound ? Properties.Resources.ico_sound_on : Properties.Resources.ico_sound_off;
         }
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -325,28 +315,18 @@ namespace ScreenRecoder.App
         //设置按钮
         private void btn_settings_BtnClick(object sender, EventArgs e)
         {
-            if (Height == 55)
+            if (formSettings == null)
             {
-                Height = 370;
-                //btn_stop_flashing = true;
-                //pl_rec.Visible = true;
+                formSettings = new FormSettings(this);
+                formSettings.Show();
             }
-            else
-            {
-                Height = 55;
-                //btn_stop_flashing = false;
-                //pl_rec.Visible = false;
-            }
+            API.WindowShow(formSettings.Handle);
+            API.WindowSetForeground(formSettings.Handle);
         }
-        //选择路径按钮
-        private void btn_choosedir_Click(object sender, EventArgs e)
+        //预览按钮
+        private void btn_preview_BtnClick(object sender, EventArgs e)
         {
-            FolderBrowserDialog f = new FolderBrowserDialog();
-            if (f.ShowDialog(this) == DialogResult.OK)
-            {
-                textBox_export_dir.Text = f.DirectoryPath;
-                Settings.SaveDir = f.DirectoryPath;
-            }
+            SePreviewState();
         }
         //3个控制按钮
         //开始录制按钮
@@ -420,82 +400,97 @@ namespace ScreenRecoder.App
             switch (id)
             {
                 case Recorder.UpdateCallbackID.OnStart:
-                    btn_stop.Visible = true;
-                    pl_rec.Visible = true;
-                    btn_pause_flashing = false;
-                    btn_stop_flashing = true;
-
-                    timerUpdateTime.Start();
-                    if (!Settings.fullscreen)
                     {
-                        API.WindowHide(formRect.Handle);
-                        API.WindowShow(formRectRecing.Handle);
-                    }
-                    if (Settings.hide_wnd_when_rec) API.WindowHide(Handle);
-                    else if (Settings.show_mini_recing)
-                    {
-                        API.WindowHide(Handle);
-                        API.WindowShow(formRecMini.Handle);
+                        btn_stop.Visible = true;
+                        pl_rec.Visible = true;
+                        btn_pause_flashing = false;
+                        btn_stop_flashing = true;
+                        lb_recing_bottom.Visible = true;
+                        lb_time.Text = "00:00";
+                        timerUpdateTime.Start();
+                        if (Settings.playsound) API.AppPlayTip("play", false);
                         if (!Settings.fullscreen)
                         {
-                            int x, y, w, h;
-                            x = formRect.Left; y = formRect.Top;
-                            w = formRect.Width; h = formRect.Height;
-                            if (x > 0) formRecMini.Left = x + 5;
-                            else formRecMini.Left = 5;
-                            if (Screen.PrimaryScreen.Bounds.Height - (y + h) >= 36)
-                                formRecMini.Top = y + h + 2;
-                            else if (y > 39)
-                                formRecMini.Top = y - 38;
-                            else
-                                formRecMini.Top = Screen.PrimaryScreen.Bounds.Height - 36;
+                            API.WindowHide(formRect.Handle);
+                            API.WindowShow(formRectRecing.Handle);
                         }
-                        else
+                        if (Settings.hide_wnd_when_rec) API.WindowHide(Handle);
+                        else if (Settings.show_mini_recing)
                         {
-                            formRecMini.Left = Width - formRecMini.Width;
-                            formRecMini.Top = Height - formRecMini.Height;
+                            API.WindowHide(Handle);
+                            API.WindowShow(formRecMini.Handle);
+                            API.WindowSetForeground(formRecMini.Handle);
+                            if (!Settings.fullscreen)
+                            {
+                                int x, y, w, h;
+                                x = formRect.Left; y = formRect.Top;
+                                w = formRect.Width; h = formRect.Height;
+                                if (x > 0) formRecMini.Left = x + 5;
+                                else formRecMini.Left = 5;
+                                if (Screen.PrimaryScreen.Bounds.Height - (y + h) >= 36)
+                                    formRecMini.Top = y + h + 2;
+                                else if (y > 39)
+                                    formRecMini.Top = y - 38;
+                                else
+                                    formRecMini.Top = Screen.PrimaryScreen.Bounds.Height - 36;
+                            }
+                            else
+                            {
+                                formRecMini.Left = 5;
+                                formRecMini.Top = 5;
+                            }
+                            formRecMini.SetPlayPause(true);
                         }
-                        formRecMini.SetPlayPause(true);
+                        dur = 0;
+                        break;
                     }
-                    dur = 0;
-                    break;
                 case Recorder.UpdateCallbackID.OnPause:
-                    btn_pause_flashing = true;
-                    btn_stop_flashing = false;
-                    timerUpdateTime.Stop();
-                    toolTip1.SetToolTip(btn_pause, "继续录像");
-                    if (Settings.show_mini_recing)
-                        formRecMini.SetPlayPause(false);
-                    break;
+                    {
+                        btn_pause_flashing = true;
+                        btn_stop_flashing = false;
+                        timerUpdateTime.Stop();
+                        toolTip1.SetToolTip(btn_pause, "继续录像");
+                        if (Settings.playsound) API.AppPlayTip("pause", true);
+                        if (Settings.show_mini_recing)
+                            formRecMini.SetPlayPause(false);
+                        break;
+                    }
                 case Recorder.UpdateCallbackID.OnContinue:
-                    timerUpdateTime.Start();
-                    btn_pause_flashing = false;
-                    btn_stop_flashing = true;
-                    toolTip1.SetToolTip(btn_pause, "暂停录像");
-                    if (Settings.show_mini_recing)
-                        formRecMini.SetPlayPause(true);
-                    break;
+                    {
+                        timerUpdateTime.Start();
+                        btn_pause_flashing = false;
+                        btn_stop_flashing = true;
+                        toolTip1.SetToolTip(btn_pause, "暂停录像");
+                        if (Settings.playsound) API.AppPlayTip("play", false);
+                        if (Settings.show_mini_recing)
+                            formRecMini.SetPlayPause(true);
+                        break;
+                    }
                 case Recorder.UpdateCallbackID.OnStop:
-                    timerUpdateTime.Stop();
-                    btn_pause_flashing = false;
-                    btn_stop_flashing = false;
-                    //last_file = Recorder.RecoderGetLastOutFileName();
-                    //pl_reced.Show();
-                    if (Settings.show_mini_recing)
-                        formRecMini.SetPlayPause(false);
-                    pl_rec.Visible = false;
-                    if (!Settings.fullscreen || API.WindowIsVisible(formRectRecing.Handle))
                     {
-                        if (!Settings.fullscreen) API.WindowShow(formRect.Handle);
-                        API.WindowHide(formRectRecing.Handle);
+                        timerUpdateTime.Stop();
+                        lb_recing_bottom.Visible = false;
+                        btn_pause_flashing = false;
+                        btn_stop_flashing = false;
+                        //last_file = Recorder.RecoderGetLastOutFileName();
+                        //pl_reced.Show();
+                        if (Settings.playsound) API.AppPlayTip("stop", true);
+                        if (Settings.show_mini_recing)
+                            formRecMini.SetPlayPause(false);
+                        pl_rec.Visible = false;
+                        if (!Settings.fullscreen || API.WindowIsVisible(formRectRecing.Handle))
+                        {
+                            if (!Settings.fullscreen) API.WindowShow(formRect.Handle);
+                            API.WindowHide(formRectRecing.Handle);
+                        }
+                        if (Settings.hide_wnd_when_rec) API.WindowShow(Handle);
+                        else if (Settings.show_mini_recing || API.WindowIsVisible(formRecMini.Handle) || !API.WindowIsVisible(Handle))
+                        {
+                            API.WindowShow(Handle);
+                            API.WindowHide(formRecMini.Handle);
+                        }
+                        break;
                     }
-                    if (Settings.hide_wnd_when_rec) API.WindowShow(Handle);
-                    else if (Settings.show_mini_recing || API.WindowIsVisible(formRecMini.Handle) || !API.WindowIsVisible(Handle))
-                    {
-                        API.WindowShow(Handle);
-                        API.WindowHide(formRecMini.Handle);
-                    }
-                    break;
             }
         }
         //刷新时间定时器
@@ -508,140 +503,20 @@ namespace ScreenRecoder.App
                 ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
             formRecMini.SetTime(lb_time.Text);
         }
-
-        //用户改变设置事件
-        private void check_exit_min_CheckedChanged(object sender, EventArgs e)
+        //预览小窗刷新
+        private void timerPreview_Tick(object sender, EventArgs e)
         {
-            Settings.close_act_exit = !check_exit_min.Checked;
+            pb_preview.Invalidate();
         }
-        private void check_fullscreen_CheckedChanged(object sender, EventArgs e)
+        private void pb_preview_Paint(object sender, PaintEventArgs e)
         {
-            Settings.fullscreen = check_fullscreen.Checked;
-            if (Recorder.State != Recorder.Record_State.RECORDING && Recorder.State != Recorder.Record_State.SUSPENDED)
-            {
-                if (!Settings.fullscreen)
-                {
-                    API.WindowShow(formRect.Handle);
-                    formRect.Invalidate();
-                }
-                else API.WindowHide(formRect.Handle);
-            }
-            recShowNotifyText();
-        }
-        private void numeric_frame_rate_ValueChanged(object sender, EventArgs e)
-        {
-            Settings.frame_rate = Convert.ToInt32(numeric_frame_rate.Value);
-            recShowNotifyText();
-        }
-        private void combo_quality_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (combo_quality.SelectedIndex != 0)
-                Settings.quality = combo_quality.SelectedIndex;
-            recShowNotifyText();
-        }
-        private void combo_format_SelectedIndexChanged(object sender, EventArgs e)
-        {       
-            if (combo_format.SelectedIndex == 0)
-            {
-                Recorder.RecordFormat = Recorder.VIDEO_FORMAT.VIDEO_FORMAT_UNKOWN;
-                Settings.VideoType = "DEFAULT";
-            }
+            if (Recorder.State == Recorder.Record_State.NOT_BEGIN && Settings.fullscreen)
+                e.Graphics.DrawString(screenSize.Width + " x " + screenSize.Height, Font, Brushes.White, 10, 6);
+            if (Settings.fullscreen)
+                Recorder.RecoderDrawPreviewRect(e.Graphics.GetHdc(), 0, 0, screenSize.Width, screenSize.Height, pb_preview.Width, pb_preview.Height);
             else
-            {
-                Settings.VideoType = Recorder.RecordFormat.ToString();
-                Recorder.RecordFormat = (Recorder.VIDEO_FORMAT)combo_format.SelectedIndex;
-            }
-            recShowNotifyText();
-        }
-        private void check_rem_pos_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.rempos = check_rem_pos.Checked;
-        }
-        private void check_recmic_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.recmic = check_recmic.Checked;
-            recShowNotifyText();
-        }
-        private void check_recsound_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.recsound = check_recsound.Checked;
-            recShowNotifyText();
-        }
-        private void btn_defsettings_Click(object sender, EventArgs e)
-        {
-            if (new FormMsg("", "您是否要恢复默认设置？", "是", "否", "疑问").ShowDialog(this) == DialogResult.OK)
-            {
-                check_recmic.Checked = false;
-                check_recsound.Checked = true;
-                check_exit_min.Checked = true;
-                check_fullscreen.Checked = true;
-                numeric_frame_rate.Value = 15;
-                combo_format.SelectedIndex = 0;
-                combo_quality.SelectedIndex = 0;
-                check_rem_pos.Checked = true;
-                textBox_export_dir.Text = API.GetDefExportDir();
-                Settings.SaveDir = textBox_export_dir.Text;
-                hotKey_start.SetKeys(new Keys[] { Keys.F1 });
-                hotKey_pause.SetKeys(new Keys[] { Keys.F2 });
-                hotKey_stop.SetKeys(new Keys[] { Keys.F3 });
-                hotKey_showhide.SetKeys(new Keys[] { Keys.R, Keys.Shift });
-                hotKey_start.GetKeys(Settings.hotkey_start);
-                hotKey_pause.GetKeys(Settings.hotkey_pause);
-                hotKey_stop.GetKeys(Settings.hotkey_stop);
-                hotKey_showhide.GetKeys(Settings.hotkey_showehide);
-            }
-        }
-        private void check_usemini_inrec_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.show_mini_recing = check_usemini_inrec.Checked;
-        }
-        private void check_hide_whenrec_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.hide_wnd_when_rec = check_hide_whenrec.Checked;
-        }
-        private void recShowNotifyText()
-        {
-            if (Recorder.State == Recorder.Record_State.RECORDING || Recorder.State == Recorder.Record_State.SUSPENDED)
-                if (!lb_recset_notify.Visible)
-                    lb_keyset_notify.Visible = true;
-        }
-        //重启软件
-        private void link_reboot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            exit = true;
-            if (close_arsk()) return;
-            Close();
-            API.StartNewWhenExit();
-        }
-
-        //热键设置
-        private void hotKey_start_KeysChanged(object sender, EventArgs e)
-        {
-            hotKey_start.GetKeys(Settings.hotkey_start);
-            hotKeyShowNotifyText();
-        }
-        private void hotKey_pause_KeysChanged(object sender, EventArgs e)
-        {
-            hotKey_pause.GetKeys(Settings.hotkey_pause);
-            hotKeyShowNotifyText();
-        }
-        private void hotKey_stop_KeysChanged(object sender, EventArgs e)
-        {
-            hotKey_stop.GetKeys(Settings.hotkey_stop);
-            hotKeyShowNotifyText();
-        }
-        private void hotKey_showhide_KeysChanged(object sender, EventArgs e)
-        {
-            hotKey_showhide.GetKeys(Settings.hotkey_showehide);
-            hotKeyShowNotifyText();
-        }
-        private void hotKeyShowNotifyText()
-        {
-            if (!lb_keyset_notify.Visible)
-            {
-                lb_keyset_notify.Visible = true;
-                link_reboot.Visible = true;
-            }
+                Recorder.RecoderDrawPreviewRect(e.Graphics.GetHdc(), formRect.Left, formRect.Top, formRect.Width, formRect.Height, pb_preview.Width, pb_preview.Height);
+            e.Graphics.ReleaseHdc();
         }
 
         //托盘菜单事件
@@ -662,63 +537,96 @@ namespace ScreenRecoder.App
             API.WindowSetForeground(Handle);
         }
 
-        public void SetFullScreen()
+        //全屏切换
+        private void toggle_fullscreen_CheckedChanged(object sender, EventArgs e)
         {
-            check_fullscreen.Checked = true;
+            Settings.fullscreen = toggle_fullscreen.Checked;
+            SwitchFullScreen();
+            if (Settings.fullscreen)
+            {
+                lb_fullscreen.ForeColor = Color.FromArgb(18, 150, 219);
+                lb_rectrec.ForeColor = Color.White;
+            }
+            else
+            {
+                lb_rectrec.ForeColor = Color.FromArgb(18, 150, 219);
+                lb_fullscreen.ForeColor = Color.White;
+            }
+        }
+        private void btn_rec_sound_Click(object sender, EventArgs e)
+        {
+            Settings.recsound = !Settings.recsound;
+            btn_rec_sound.Image = Settings.recsound ? Properties.Resources.ico_sound_on : Properties.Resources.ico_sound_off;
+            if (formSettings != null && formSettings.check_recsound.Checked != Settings.recsound)
+                formSettings.check_recsound.Checked = Settings.recsound;
+        }
+        private void btn_rec_mouse_Click(object sender, EventArgs e)
+        {
+            Settings.recmic = !Settings.recmic;
+            btn_rec_mouse.Image = Settings.recmic ? Properties.Resources.ico_mouse_on : Properties.Resources.ico_mouse_off;
+            if (formSettings != null && formSettings.check_recmic.Checked != Settings.recmic)
+                formSettings.check_recmic.Checked = Settings.recmic;
         }
 
-        //三个设置页 按钮
-        private void btn_softset_Click(object sender, EventArgs e)
+        //全屏录制状态修改
+        public void SwitchFullScreen()
         {
-            btn_softset.BackColor = Color.OrangeRed;
-            btn_hotkeyset.BackColor = Color.Tomato;
-            btn_recset.BackColor = Color.Tomato;
-            btn_about.BackColor = Color.Tomato;
-            pl_hotkeyset.Visible = false;
-            pl_recset.Visible = false;
-            pl_softset.Visible = true;
-            pl_about.Visible = false;
+            if (toggle_fullscreen.Checked != Settings.fullscreen)
+                toggle_fullscreen.Checked = Settings.fullscreen; 
+            if(formSettings != null && formSettings.check_fullscreen.Checked != Settings.fullscreen)
+            {
+                if (Settings.fullscreen)
+                {
+                    formSettings.check_fullscreen.Checked = true;
+                    formSettings.radio_rect_rec.Checked = false;
+                }
+                else
+                {
+                    formSettings.check_fullscreen.Checked = false;
+                    formSettings.radio_rect_rec.Checked = true;
+                }
+            }
+            if (Recorder.State != Recorder.Record_State.RECORDING && Recorder.State != Recorder.Record_State.SUSPENDED)
+            {
+                if (!Settings.fullscreen)
+                {
+                    API.WindowShow(formRect.Handle);
+                    formRect.Invalidate();
+                }
+                else API.WindowHide(formRect.Handle);
+            }
         }
-        private void btn_recset_Click(object sender, EventArgs e)
+        public void SetFullScreen()
         {
-            if (lb_recset_notify.Visible) lb_recset_notify.Visible = false;
-            btn_softset.BackColor = Color.Tomato;
-            btn_hotkeyset.BackColor = Color.Tomato;
-            btn_recset.BackColor = Color.OrangeRed;
-            btn_about.BackColor = Color.Tomato;
-            pl_hotkeyset.Visible = false;
-            pl_recset.Visible = true;
-            pl_softset.Visible = false;
-            pl_about.Visible = false;
+            Settings.fullscreen = true;
+            SwitchFullScreen();
         }
-        private void btn_hotkeyset_Click(object sender, EventArgs e)
+        //预览小窗开启关闭
+        public void SePreviewState()
         {
-            btn_softset.BackColor = Color.Tomato;
-            btn_hotkeyset.BackColor = Color.OrangeRed;
-            btn_recset.BackColor = Color.Tomato;
-            btn_about.BackColor = Color.Tomato;
-            pl_hotkeyset.Visible = true;
-            pl_recset.Visible = false;
-            pl_softset.Visible = false;
-            pl_about.Visible = false;
-        }       
-        //关于按钮
-        private void btn_about_Click(object sender, EventArgs e)
-        {
-            btn_softset.BackColor = Color.Tomato;
-            btn_hotkeyset.BackColor = Color.Tomato;
-            btn_recset.BackColor = Color.Tomato;
-            btn_about.BackColor = Color.OrangeRed;
-            pl_about.Visible = true;
-            pl_recset.Visible = false;
-            pl_softset.Visible = false;
-            pl_hotkeyset.Visible = false;
+            if (Height == 376)
+            {
+                Height = 62;
+                Invalidate();
+                pl_footer.Visible = false;
+                pb_preview.Visible = false;
+                timerPreview.Stop();
+            }
+            else
+            {
+                Height = 376;
+                Invalidate();
+                if (Top + Height > screenSize.Height)
+                    Top = screenSize.Height - Height - 10;
+                pl_footer.Visible = true;
+                pb_preview.Visible = true;
+                timerPreview.Start();
+            }
         }
 
         protected override void WndProc(ref Message m)
         {
-            //WM_HOTKEY
-            if (m.Msg == 0x0312)
+            if (m.Msg == API.WM_HOTKEY)
             {
                 int id = m.WParam.ToInt32();
                 switch (id)
@@ -743,17 +651,20 @@ namespace ScreenRecoder.App
                         break;
                 }
             }
+            else if (m.Msg == API.WM_DISPLAYCHANGE)
+            {
+                screenSize = new Size(API.GetSystemMetrics(API.SM_CXSCREEN), API.GetSystemMetrics(API.SM_CYSCREEN));
+            }
             base.WndProc(ref m);
         }
 
-        //打开目录按钮
-        private void btn_open_folder_Click(object sender, EventArgs e)
+        //窗口背景和边框绘画 
+        private Pen borderPen = new Pen(Color.FromArgb(56,56,56));
+
+        private void FormMain_Paint(object sender, PaintEventArgs e)
         {
-            if(textBox_export_dir.Text!="")
-            {
-                if (System.IO.Directory.Exists(textBox_export_dir.Text))
-                    System.Diagnostics.Process.Start(textBox_export_dir.Text);
-            }
+            e.Graphics.DrawRectangle(borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
         }
+
     }
 }

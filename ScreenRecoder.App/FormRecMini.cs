@@ -72,5 +72,13 @@ namespace ScreenRecoder.App
                 return cp;
             }
         }
+
+        //窗口背景和边框绘画 
+        private Pen borderPen = new Pen(Color.FromArgb(66, 66, 66));
+
+        private void FormRecMini_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
+        }
     }
 }

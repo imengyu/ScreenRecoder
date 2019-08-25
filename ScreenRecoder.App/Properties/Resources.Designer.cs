@@ -47,7 +47,7 @@ namespace ScreenRecoder.App.Properties {
         }
         
         /// <summary>
-        ///   使用此强类型资源类，为所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -243,6 +243,26 @@ namespace ScreenRecoder.App.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ico_mouse_off {
+            get {
+                object obj = ResourceManager.GetObject("ico_mouse_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ico_mouse_on {
+            get {
+                object obj = ResourceManager.GetObject("ico_mouse_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ico_move {
             get {
                 object obj = ResourceManager.GetObject("ico_move", resourceCulture);
@@ -303,6 +323,16 @@ namespace ScreenRecoder.App.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ico_preview {
+            get {
+                object obj = ResourceManager.GetObject("ico_preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ico_record {
             get {
                 object obj = ResourceManager.GetObject("ico_record", resourceCulture);
@@ -336,6 +366,26 @@ namespace ScreenRecoder.App.Properties {
         internal static System.Drawing.Bitmap ico_settings {
             get {
                 object obj = ResourceManager.GetObject("ico_settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ico_sound_off {
+            get {
+                object obj = ResourceManager.GetObject("ico_sound_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ico_sound_on {
+            get {
+                object obj = ResourceManager.GetObject("ico_sound_on", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -426,6 +476,66 @@ namespace ScreenRecoder.App.Properties {
         internal static System.Drawing.Bitmap ScreenRecoderIco {
             get {
                 object obj = ResourceManager.GetObject("ScreenRecoderIco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_off_h {
+            get {
+                object obj = ResourceManager.GetObject("toggle_off_h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_off_n {
+            get {
+                object obj = ResourceManager.GetObject("toggle_off_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_off_p {
+            get {
+                object obj = ResourceManager.GetObject("toggle_off_p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_on_h {
+            get {
+                object obj = ResourceManager.GetObject("toggle_on_h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_on_n {
+            get {
+                object obj = ResourceManager.GetObject("toggle_on_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_on_p {
+            get {
+                object obj = ResourceManager.GetObject("toggle_on_p", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

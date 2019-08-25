@@ -13,6 +13,8 @@ namespace ScreenRecoder.App
             rempos = true,
             notify_when_finish = true,
             show_mini_recing = true,
+            show_preview = true,
+            playsound = true,
             hide_wnd_when_rec = false;
         public static int last_x = 0,
             last_y = 0,
@@ -42,6 +44,10 @@ namespace ScreenRecoder.App
             hide_wnd_when_rec = f == "True" || f == "true" || f == "1" || f == "TRUE";
             f = API.IniReadValue("AppSetting", "UseMiniWindowWhenRecording", "True");
             show_mini_recing = f == "True" || f == "true" || f == "1" || f == "TRUE";
+            f = API.IniReadValue("AppSetting", "ShowPreview", "True");
+            show_preview = f == "True" || f == "true" || f == "1" || f == "TRUE";
+            f = API.IniReadValue("AppSetting", "PlaySoundTip", "True");
+            playsound = f == "True" || f == "true" || f == "1" || f == "TRUE";
 
             string s = API.IniReadValue("HotKeySetting", "Start", "");
             if (s.Contains(","))
@@ -123,12 +129,14 @@ namespace ScreenRecoder.App
         public static void SaveSettings()
         {
             API.IniWriteValue("AppSetting", "HideWindowWhenRecording", hide_wnd_when_rec ? "True" : "False");
+            API.IniWriteValue("AppSetting", "ShowPreview", show_preview ? "True" : "False");
             API.IniWriteValue("AppSetting", "UseMiniWindowWhenRecording", show_mini_recing ? "True" : "False");
             API.IniWriteValue("AppSetting", "NotifyWhenFinished", notify_when_finish ? "True" : "False");
             API.IniWriteValue("AppSetting", "Rempos", rempos ? "True" : "False");
             API.IniWriteValue("AppSetting", "CloseAction", close_act_exit ? "Close" : "Hide");
             API.IniWriteValue("AppSetting", "LastAppX", last_appx.ToString());
             API.IniWriteValue("AppSetting", "LastAppY", last_appy.ToString());
+            API.IniWriteValue("AppSetting", "PlaySoundTip", playsound ? "True" : "False");
 
             API.IniWriteValue("RecorderSetting", "RecordSound", recsound ? "True" : "False");
             API.IniWriteValue("RecorderSetting", "RecordMouse", recmic ? "True" : "False");

@@ -56,6 +56,8 @@ namespace ScreenRecoder.App
         public static extern void RecoderSetCaptureFrameRate(int rate);
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern string RecoderGetLastOutFileName();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void RecoderDrawPreviewRect(IntPtr hdc, int x, int y, int w, int h, int tw, int th);
 
         public static extern VIDEO_FORMAT RecordFormat
         {

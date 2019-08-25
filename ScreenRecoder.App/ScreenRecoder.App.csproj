@@ -50,7 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
-    <Compile Include="FileBorserDialog.cs" />
+    <Compile Include="Controls\FileBorserDialog.cs" />
+    <Compile Include="Controls\FlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Taber.cs" />
+    <Compile Include="Controls\Toggle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Toggle.Designer.cs">
+      <DependentUpon>Toggle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormChooseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,22 +106,36 @@
     <Compile Include="FormRectRecing.designer.cs">
       <DependentUpon>FormRectRecing.cs</DependentUpon>
     </Compile>
-    <Compile Include="HotKeySelecter.cs">
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HotKeySelecter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IconButton.cs">
+    <Compile Include="Controls\IconButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IconButton.Designer.cs">
+    <Compile Include="Controls\IconButton.Designer.cs">
       <DependentUpon>IconButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageButton.cs">
+    <Compile Include="Controls\ImageButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Recorder.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Controls\Toggle.resx">
+      <DependentUpon>Toggle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormChooseWindow.resx">
       <DependentUpon>FormChooseWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,19 +157,17 @@
     <EmbeddedResource Include="FormRectRecing.resx">
       <DependentUpon>FormRectRecing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IconButton.resx">
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\IconButton.resx">
       <DependentUpon>IconButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -244,7 +269,21 @@
     <None Include="Resources\ico_pause_small.png" />
     <None Include="Resources\ico_stop_light_small.png" />
     <None Include="Resources\ico_huge.png" />
+    <None Include="Resources\ico_preview.png" />
+    <None Include="Resources\toggle_off_h.png" />
+    <None Include="Resources\toggle_off_n.png" />
+    <None Include="Resources\toggle_off_p.png" />
+    <None Include="Resources\toggle_on_h.png" />
+    <None Include="Resources\toggle_on_n.png" />
+    <None Include="Resources\toggle_on_p.png" />
+    <None Include="Resources\ico_voice_off.png" />
+    <None Include="Resources\ico_voice_on.png" />
+    <None Include="Resources\ico_mouse_off.png" />
+    <None Include="Resources\ico_mouse_on.png" />
+    <None Include="Resources\ico_sound_off.png" />
+    <None Include="Resources\ico_sound_on.png" />
     <Content Include="ScreenRecoderIco.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

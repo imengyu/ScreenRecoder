@@ -45,19 +45,19 @@
             this.pl_rec.Controls.Add(this.btn_pause);
             this.pl_rec.Controls.Add(this.btn_stop);
             this.pl_rec.Controls.Add(this.lb_time);
-            this.pl_rec.Location = new System.Drawing.Point(0, 0);
+            this.pl_rec.Location = new System.Drawing.Point(1, 1);
             this.pl_rec.Name = "pl_rec";
-            this.pl_rec.Size = new System.Drawing.Size(204, 36);
+            this.pl_rec.Size = new System.Drawing.Size(177, 36);
             this.pl_rec.TabIndex = 5;
             // 
             // btn_huge
             // 
             this.btn_huge.BackColor = System.Drawing.Color.Transparent;
-            this.btn_huge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(90)))));
+            this.btn_huge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.btn_huge.Icon = global::ScreenRecoder.App.Properties.Resources.ico_huge;
             this.btn_huge.IconSize = new System.Drawing.Size(26, 26);
             this.btn_huge.Light = false;
-            this.btn_huge.Location = new System.Drawing.Point(167, 0);
+            this.btn_huge.Location = new System.Drawing.Point(141, 0);
             this.btn_huge.Name = "btn_huge";
             this.btn_huge.PressedColor = System.Drawing.Color.Black;
             this.btn_huge.Size = new System.Drawing.Size(36, 36);
@@ -67,8 +67,8 @@
             // 
             // btn_pause
             // 
-            this.btn_pause.BackColor = System.Drawing.Color.Maroon;
-            this.btn_pause.HoverColor = System.Drawing.Color.IndianRed;
+            this.btn_pause.BackColor = System.Drawing.Color.Transparent;
+            this.btn_pause.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btn_pause.Icon = global::ScreenRecoder.App.Properties.Resources.ico_pause_small;
             this.btn_pause.IconSize = new System.Drawing.Size(16, 16);
             this.btn_pause.Light = false;
@@ -83,7 +83,7 @@
             // btn_stop
             // 
             this.btn_stop.BackColor = System.Drawing.Color.Transparent;
-            this.btn_stop.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(90)))));
+            this.btn_stop.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.btn_stop.Icon = global::ScreenRecoder.App.Properties.Resources.ico_stop_small;
             this.btn_stop.IconSize = new System.Drawing.Size(16, 16);
             this.btn_stop.Light = false;
@@ -99,13 +99,13 @@
             // 
             this.lb_time.AutoEllipsis = true;
             this.lb_time.BackColor = System.Drawing.Color.DarkRed;
-            this.lb_time.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_time.Font = new System.Drawing.Font("宋体", 9F);
             this.lb_time.ForeColor = System.Drawing.Color.White;
             this.lb_time.Location = new System.Drawing.Point(72, 0);
             this.lb_time.Name = "lb_time";
-            this.lb_time.Size = new System.Drawing.Size(95, 36);
+            this.lb_time.Size = new System.Drawing.Size(73, 36);
             this.lb_time.TabIndex = 1;
-            this.lb_time.Text = "00:00:00";
+            this.lb_time.Text = "0:00:00";
             this.lb_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_time.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lb_time_MouseDown);
             // 
@@ -113,16 +113,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(60)))));
-            this.ClientSize = new System.Drawing.Size(204, 36);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(179, 38);
             this.Controls.Add(this.pl_rec);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormRecMini";
             this.ShowInTaskbar = false;
-            this.Text = "FormRecMini";
-            this.TopMost = true;
+            this.Text = "迷你录制窗口";
             this.Load += new System.EventHandler(this.FormRecMini_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormRecMini_Paint);
             this.pl_rec.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -134,7 +134,7 @@
         private IconButton btn_pause;
         private IconButton btn_stop;
         private IconButton btn_huge;
-        private System.Windows.Forms.Label lb_time;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.Label lb_time;
     }
 }

@@ -56,6 +56,14 @@ namespace ScreenRecoder.App
 
         public event EventHandler KeysChanged;
 
+        public static bool IsEmepty(Keys[] keys)
+        {
+            int kc = 0;
+            for (int i = 0; i < keys.Length; i++)
+                if (keys[i] != Keys.None)
+                    kc++;
+            return kc == 0;
+        }
         public bool IsEmepty()
         {
             return downedKeys.Count == 0;
