@@ -24,6 +24,6 @@
 使用的第三方开源软件
 ---
 
-- [FFmpeg] (http://ffmpeg.org/)
-- [mono] (https://github.com/mono/mono)
+- http://ffmpeg.org/
+- https://github.com/mono/mono
 
