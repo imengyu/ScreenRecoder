@@ -17,7 +17,7 @@ B_CAPI(std::wstring *)FormatStringPtr2W(std::wstring *_str, const wchar_t * _For
 B_CAPI(std::wstring *)FormatStringPtrW(const wchar_t *format, ...);
 B_CAPI(std::string *)FormatStringPtrA(const char *format, ...);
 
-#define DIRMAKER(dirname,add) WCHAR dirname[MAX_PATH];\
+#define SDIRMAKER(dirname,add) WCHAR dirname[MAX_PATH];\
 wcscpy_s(dirname, startDir);\
 wcscat_s(dirname, add)
 #define CHARMAKER(strs,wstr) CHAR *strs=UnicodeToAnsi(wstr)

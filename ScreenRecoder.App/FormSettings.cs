@@ -1,4 +1,6 @@
-﻿using ScreenRecoder.App.Controls;
+﻿using ScreenRecoder.App.Api;
+using ScreenRecoder.App.Controls;
+using ScreenRecoder.App.Core;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,6 +15,8 @@ namespace ScreenRecoder.App
             formMain = m;
         }
 
+        public bool isClose { get; set; }
+
         private Taber taber = new Taber();
         private FormMain formMain = null;
         private void FormSettings_Load(object sender, EventArgs e)
@@ -24,9 +28,15 @@ namespace ScreenRecoder.App
             taber.AddTab(pl_softset, tab_soft);
             taber.SwitchTab(pl_recset);
 
+            LoadMicrophoneDevices();
             LoadSettings();
         }
-
+        private void LoadMicrophoneDevices()
+        {
+            string[] devs = Recorder.GetAudioCaptureDevices();
+            foreach (string s in devs)
+                combo_mic.Items.Add(s);
+        }
         public void LoadSettings()
         {
             //设置显示到控件
@@ -36,6 +46,7 @@ namespace ScreenRecoder.App
             check_recsound.Checked = Settings.recsound;
             check_exit_min.Checked = !Settings.close_act_exit;
             check_fullscreen.Checked = Settings.fullscreen;
+            check_top.Checked = Settings.window_top;
             if (!Settings.fullscreen) radio_rect_rec.Checked = true;
             //帧率设置
             if (Settings.frame_rate == 15)
@@ -59,16 +70,19 @@ namespace ScreenRecoder.App
                 numeric_frame_rate.Visible = true;
             }
             numeric_frame_rate.Value = Settings.frame_rate;
+            combo_mic.SelectedIndex =  Settings.mic_index + 1;
 
             combo_quality.SelectedIndex = Settings.quality;
             check_rem_pos.Checked = Settings.rempos;
-            textBox_export_dir.Text = Settings.SaveDir;
-            combo_format.SelectedItem = Settings.VideoType;
+            if (Settings.SaveDir == "DEFAULT") textBox_export_dir.Text = "默认";
+            else textBox_export_dir.Text = Settings.SaveDir;
+            if (Settings.VideoType == "DEFAULT") combo_format.SelectedIndex = 0;
+            else combo_format.SelectedItem = Settings.VideoType;
             hotKey_pause.SetKeys(Settings.hotkey_pause);
             hotKey_showhide.SetKeys(Settings.hotkey_showehide);
             hotKey_start.SetKeys(Settings.hotkey_start);
             hotKey_stop.SetKeys(Settings.hotkey_stop);
-
+            hotKey_screenshutcut.SetKeys(Settings.hotkey_screenshutcut);
         }
 
         //窗口背景和边框绘画 
@@ -142,6 +156,11 @@ namespace ScreenRecoder.App
             }
             recShowNotifyText();
         }
+        private void combo_mic_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.mic_index = combo_mic.SelectedIndex - 1;
+            recShowNotifyText();
+        }
         private void check_rem_pos_CheckedChanged(object sender, EventArgs e)
         {
             Settings.rempos = check_rem_pos.Checked;
@@ -149,7 +168,7 @@ namespace ScreenRecoder.App
         private void check_recmic_CheckedChanged(object sender, EventArgs e)
         {
             Settings.recmic = check_recmic.Checked;
-            formMain.btn_rec_mouse.Image = Settings.recmic ? Properties.Resources.ico_mouse_on : Properties.Resources.ico_mouse_off;
+            formMain.btn_rec_mic.Image = Settings.recmic ? Properties.Resources.ico_mouse_on : Properties.Resources.ico_mouse_off;
             recShowNotifyText();
         }
         private void check_recsound_CheckedChanged(object sender, EventArgs e)
@@ -166,6 +185,19 @@ namespace ScreenRecoder.App
         {
             Settings.hide_wnd_when_rec = check_hide_whenrec.Checked;
         }
+        private void check_use_sound_tip_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.playsound = check_use_sound_tip.Checked;
+        }
+        private void check_show_preview_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.show_preview = check_show_preview.Checked;
+        }
+        private void check_top_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.window_top = check_top.Checked;
+            formMain.SwitchTop();
+        }
         private void recShowNotifyText()
         {
             if (Recorder.State == Recorder.Record_State.RECORDING || Recorder.State == Recorder.Record_State.SUSPENDED)
@@ -176,12 +208,7 @@ namespace ScreenRecoder.App
         //重启软件
         private void link_reboot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            /*
-            exit = true;
-            if (close_arsk()) return;
-            Close();
-            API.StartNewWhenExit();
-            */
+            formMain.Restart();
         }
 
         //热键设置
@@ -205,6 +232,11 @@ namespace ScreenRecoder.App
             hotKey_showhide.GetKeys(Settings.hotkey_showehide);
             hotKeyShowNotifyText();
         }
+        private void hotKey_screenshutcut_KeysChanged(object sender, EventArgs e)
+        {
+            hotKey_screenshutcut.GetKeys(Settings.hotkey_screenshutcut);
+            hotKeyShowNotifyText();
+        }
         private void hotKeyShowNotifyText()
         {
             if (!lb_keyset_notify.Visible)
@@ -217,7 +249,7 @@ namespace ScreenRecoder.App
         //默认设置
         private void btn_defsettings_Click(object sender, EventArgs e)
         {
-            if (new FormMsg("", "您是否要恢复默认设置？", "是", "否", "疑问").ShowDialog(this) == DialogResult.OK)
+            if (new FormMsg("", "您是否要恢复默认设置？", "是", "否", "ScreenRecoder - 疑问", Properties.Resources.question_mark_r_o).ShowDialog(this) == DialogResult.OK)
             {
                 check_recmic.Checked = false;
                 check_recsound.Checked = true;
@@ -227,7 +259,7 @@ namespace ScreenRecoder.App
                 combo_format.SelectedIndex = 0;
                 combo_quality.SelectedIndex = 0;
                 check_rem_pos.Checked = true;
-                textBox_export_dir.Text = API.GetDefExportDir();
+                textBox_export_dir.Text = AppUtils.GetDefExportDir();
                 Settings.SaveDir = textBox_export_dir.Text;
                 hotKey_start.SetKeys(new Keys[] { Keys.F1 });
                 hotKey_pause.SetKeys(new Keys[] { Keys.F2 });
@@ -254,7 +286,9 @@ namespace ScreenRecoder.App
         {
             if (textBox_export_dir.Text != "")
             {
-                if (System.IO.Directory.Exists(textBox_export_dir.Text))
+                if (textBox_export_dir.Text == "默认" || textBox_export_dir.Text == "DEFAULT")
+                    System.Diagnostics.Process.Start(AppUtils.GetDefExportDir());
+                else if (System.IO.Directory.Exists(textBox_export_dir.Text))
                     System.Diagnostics.Process.Start(textBox_export_dir.Text);
             }
         }
@@ -262,8 +296,11 @@ namespace ScreenRecoder.App
         private void btn_ok_Click(object sender, EventArgs e)
         {
             if (textBox_export_dir.Text != Settings.SaveDir)
-                Settings.SaveDir = textBox_export_dir.Text;
-            Hide();
+            {
+                if (textBox_export_dir.Text == "默认" || textBox_export_dir.Text == "默认") Settings.SaveDir = "DEFAULT";
+                else Settings.SaveDir = textBox_export_dir.Text;
+            }
+            WindowUtils.Hide(Handle);
         }
         //跳转github
         private void link_github_Click(object sender, EventArgs e)
@@ -271,9 +308,28 @@ namespace ScreenRecoder.App
             System.Diagnostics.Process.Start(link_github.Text);
         }
 
-        private void check_use_sound_tip_CheckedChanged(object sender, EventArgs e)
+  
+
+        private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.playsound = check_use_sound_tip.Checked;
+            if (isClose) e.Cancel = false;
+            else
+            {
+                e.Cancel = true;
+                WindowUtils.Hide(Handle);
+            }
         }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            if (Settings.close_act_exit) formMain.Exit();
+            else
+            {
+                if (new FormMsg("", "您希望退出软件吗？", "退出", "取消", "ScreenRecoder - 疑问", Properties.Resources.question_mark_r_o).ShowDialog(this) == DialogResult.OK)
+                    formMain.Exit();
+            }
+        }
+
+
     }
 }

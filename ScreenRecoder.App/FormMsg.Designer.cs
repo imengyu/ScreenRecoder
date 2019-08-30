@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMsg));
             this.lb_title = new System.Windows.Forms.Label();
             this.lb_text = new System.Windows.Forms.Label();
             this.pl_title = new System.Windows.Forms.Panel();
@@ -44,11 +45,12 @@
             this.lb_title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_title.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_title.Location = new System.Drawing.Point(67, 44);
+            this.lb_title.Location = new System.Drawing.Point(67, 46);
             this.lb_title.Name = "lb_title";
-            this.lb_title.Size = new System.Drawing.Size(414, 23);
+            this.lb_title.Size = new System.Drawing.Size(414, 32);
             this.lb_title.TabIndex = 2;
             this.lb_title.Text = "label1";
+            this.lb_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb_text
             // 
@@ -56,9 +58,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_text.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lb_text.Location = new System.Drawing.Point(68, 67);
+            this.lb_text.Location = new System.Drawing.Point(68, 84);
             this.lb_text.Name = "lb_text";
-            this.lb_text.Size = new System.Drawing.Size(414, 113);
+            this.lb_text.Size = new System.Drawing.Size(414, 64);
             this.lb_text.TabIndex = 3;
             this.lb_text.Text = "label1";
             // 
@@ -87,11 +89,14 @@
             // 
             // btn_cancel
             // 
+            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btn_cancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.btn_cancel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_cancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.btn_cancel.Location = new System.Drawing.Point(304, 198);
+            this.btn_cancel.Image = null;
+            this.btn_cancel.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_cancel.Location = new System.Drawing.Point(303, 163);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btn_cancel.Size = new System.Drawing.Size(86, 26);
@@ -101,11 +106,14 @@
             // 
             // btn_ok
             // 
+            this.btn_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btn_ok.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.btn_ok.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_ok.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.btn_ok.Location = new System.Drawing.Point(396, 198);
+            this.btn_ok.Image = null;
+            this.btn_ok.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_ok.Location = new System.Drawing.Point(395, 163);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btn_ok.Size = new System.Drawing.Size(86, 26);
@@ -116,7 +124,7 @@
             // pb_ico
             // 
             this.pb_ico.Image = global::ScreenRecoder.App.Properties.Resources.complete_o;
-            this.pb_ico.Location = new System.Drawing.Point(17, 44);
+            this.pb_ico.Location = new System.Drawing.Point(17, 47);
             this.pb_ico.Name = "pb_ico";
             this.pb_ico.Size = new System.Drawing.Size(32, 32);
             this.pb_ico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -128,7 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(494, 236);
+            this.ClientSize = new System.Drawing.Size(494, 201);
             this.Controls.Add(this.pb_ico);
             this.Controls.Add(this.pl_title);
             this.Controls.Add(this.btn_cancel);
@@ -137,10 +145,10 @@
             this.Controls.Add(this.lb_title);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMsg";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "屏幕录制消息";
             this.Load += new System.EventHandler(this.FormMsg_Load);

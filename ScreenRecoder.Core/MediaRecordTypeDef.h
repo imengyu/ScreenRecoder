@@ -136,12 +136,20 @@ namespace MediaFileRecorder
 		int  video_frame_rate;
 		VIDEO_QUALITY quality;
 		VIDEO_FORMAT format;
+		int  record_mic_dev_index;
+		int  record_speaker_dev_index;
+
+		int  thread_count;
+
 		RECORD_INFO()
 		{
 			memset(file_name, 0, 1024);
 			is_record_video = false;
 			is_record_mic = false;
 			is_record_speaker = false;
+			thread_count = 1;
+			record_mic_dev_index = -1;
+			record_speaker_dev_index = -1;
 
 			video_dst_width = 0;
 			video_dst_height = 0;

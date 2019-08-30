@@ -262,4 +262,82 @@
   <data name="ico_mouse_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ico_mouse_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ico_rec_success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_rec_success.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_screenshotcct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_screenshotcct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="drag_point" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\drag_point.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_ellipse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_ellipse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_mosaic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_mosaic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_pen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_cancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_width_bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_width_bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_width_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_width_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_width_thing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_width_thing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_tools_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_tools_text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cur_brush_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cur_brush_big.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cur_brush_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cur_brush_normal.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cur_brush_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cur_brush_small.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cur_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cur_default.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cur_pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cur_pen.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ico_top_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_top_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_top_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_top_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_mic_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_mic_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_mic_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_mic_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

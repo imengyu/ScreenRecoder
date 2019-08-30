@@ -15,20 +15,30 @@ namespace ScreenRecoder.App
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (isNew)
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
             {
                 oldKeys.Clear();
-                foreach (Keys k in downedKeys)
-                    oldKeys.Add(k);
-
+                newKeys.Clear();
                 downedKeys.Clear();
-                isNew = false;
-            }
-            if (!downedKeys.Contains(e.KeyCode))
-            {
-                newKeys.Add(e.KeyCode);
-                downedKeys.Add(e.KeyCode);
                 UpdateKeyDisplay();
+            }
+            else
+            {
+                if (isNew)
+                {
+                    oldKeys.Clear();
+                    foreach (Keys k in downedKeys)
+                        oldKeys.Add(k);
+
+                    downedKeys.Clear();
+                    isNew = false;
+                }
+                if (!downedKeys.Contains(e.KeyCode) && downedKeys.Count < 3)
+                {
+                    newKeys.Add(e.KeyCode);
+                    downedKeys.Add(e.KeyCode);
+                    UpdateKeyDisplay();
+                }
             }
             base.OnKeyDown(e);
         }
@@ -49,7 +59,7 @@ namespace ScreenRecoder.App
             {
                 foreach (Keys k in oldKeys)
                     downedKeys.Add(k);
-                UpdateKeyDisplay();              
+                UpdateKeyDisplay();
             }
             else KeysChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -63,6 +73,16 @@ namespace ScreenRecoder.App
                 if (keys[i] != Keys.None)
                     kc++;
             return kc == 0;
+        }
+        public static string KeyDisplay(Keys[] keys)
+        {
+            string s = "";
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (i > 0) s += " + " + KeyDisplay(keys[i]);
+                else s += KeyDisplay(keys[i]);
+            }
+            return s;
         }
         public bool IsEmepty()
         {
@@ -85,17 +105,38 @@ namespace ScreenRecoder.App
         {
             return downedKeys.ToArray();
         }
-        public void GetKeys(Keys[]keys)
+        public void GetKeys(Keys[] keys)
         {
             downedKeys.CopyTo(keys);
         }
+        public static Keys ModKeyRealloc(Keys k)
+        {
+            if (k == Keys.Control || k == Keys.ControlKey || k == Keys.RControlKey)
+                return Keys.Control;
+            if (k == Keys.Alt || k == Keys.Menu || k == Keys.LMenu || k == Keys.RMenu)
+                return Keys.Alt;
+            if (k == Keys.LShiftKey || k == Keys.RShiftKey || k == Keys.ShiftKey || k == Keys.Shift)
+                return Keys.Shift;
+            return k;
+        }
+        public static string KeyDisplay(Keys k)
+        {
+            if (k == Keys.Control || k == Keys.ControlKey || k == Keys.RControlKey)
+                return "Ctrl";
+            if (k == Keys.Alt || k == Keys.Menu || k == Keys.LMenu || k == Keys.RMenu)
+                return "Alt";
+            if (k == Keys.LShiftKey || k == Keys.RShiftKey || k == Keys.ShiftKey)
+                return "Shift";
+            return k.ToString();
+        }
+
         private void UpdateKeyDisplay()
         {
             string s = "";
             for (int i = 0; i < downedKeys.Count; i++)
             {
-                if (i > 0) s += " + " + downedKeys[i].ToString();
-                else s += downedKeys[i].ToString();
+                if (i > 0) s += " + " + KeyDisplay(downedKeys[i]);
+                else s += KeyDisplay(downedKeys[i]);
             }
             Text = s;
         }

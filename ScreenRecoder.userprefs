@@ -1,0 +1,12 @@
+﻿<Properties StartupConfiguration="{EDD5E2FD-76D2-44BF-A062-BF0A8605EB57}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ScreenRecoder.App\FormMain.cs">
+    <Files>
+      <File FileName="ScreenRecoder.App\FormMain.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

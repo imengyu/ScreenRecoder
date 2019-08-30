@@ -5,12 +5,15 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScreenRecoder", "ScreenRecoder\ScreenRecoder.vcxproj", "{3EAA2D52-0606-4355-9138-ADB449EB118B}"
 	ProjectSection(ProjectDependencies) = postProject
+		{B7A5D234-8926-419A-8C1C-1D2DC948F56B} = {B7A5D234-8926-419A-8C1C-1D2DC948F56B}
 		{EDD5E2FD-76D2-44BF-A062-BF0A8605EB57} = {EDD5E2FD-76D2-44BF-A062-BF0A8605EB57}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenRecoder.App", "ScreenRecoder.App\ScreenRecoder.App.csproj", "{EDD5E2FD-76D2-44BF-A062-BF0A8605EB57}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScreenRecoder.Core", "ScreenRecoder.Core\screen_audio_recorder.vcxproj", "{B7A5D234-8926-419A-8C1C-1D2DC948F56B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenRecoder.AppForMonoDevelop", "ScreenRecoder.App\ScreenRecoder.AppForMonoDevelop.csproj", "{B61D5ED3-96BD-4216-8175-6104CCB96E80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +59,18 @@ Global
 		{B7A5D234-8926-419A-8C1C-1D2DC948F56B}.Release|x64.ActiveCfg = Release|Win32
 		{B7A5D234-8926-419A-8C1C-1D2DC948F56B}.Release|x86.ActiveCfg = Release|Win32
 		{B7A5D234-8926-419A-8C1C-1D2DC948F56B}.Release|x86.Build.0 = Release|Win32
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|x64.Build.0 = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Debug|x86.Build.0 = Debug|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|x64.ActiveCfg = Release|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|x64.Build.0 = Release|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|x86.ActiveCfg = Release|Any CPU
+		{B61D5ED3-96BD-4216-8175-6104CCB96E80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

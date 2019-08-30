@@ -24,6 +24,8 @@ namespace ScreenRecoder.App.Controls
         }
 
         public Color HoverColor { get; set; } = Color.FromArgb(66, 66, 66);
+        public Image Image { get; set; }
+        public Size ImageSize { get; set; } = new Size(20,20);
         public bool Active { get; set; }
         public void SetActive(bool b)
         {
@@ -37,6 +39,11 @@ namespace ScreenRecoder.App.Controls
             {
                 using (SolidBrush bgBrush = new SolidBrush(HoverColor))
                     e.Graphics.FillRectangle(bgBrush, new Rectangle(0, 0, Width, Height));
+            }
+            if (Image != null)
+            {
+                e.Graphics.DrawImage(Image, Width / 2 - Image.Width / 2,
+                 Height / 2 - Image.Height / 2, ImageSize.Width, ImageSize.Height);
             }
             using (SolidBrush drawBrush = new SolidBrush(base.ForeColor))
             {

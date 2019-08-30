@@ -14,7 +14,8 @@ bin/
 obj/
 .vs/
 Release/output/
+*.rar
 *.ipdb
 *.iobj
 *.mp4
-
+*.ini

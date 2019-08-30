@@ -10,6 +10,7 @@
 ---
 这是一个基于FFmpeg，使用 C# 、C++ 开发的最简单的适用于 Windows 屏幕录制软件。您可以自定义视频质量、格式、大小等对您的桌面进行录制。
 
+[![ScreenRecoderTest](https://raw.githubusercontent.com/717021/ScreenRecoder/master/ScreenRecoderTest.jpg)]()
 
 这仅仅是我学习编程而做的一个小 Demo ，如有bug或不足请见谅。
 
@@ -26,4 +27,3 @@
 
 - FFmpeg
 - mono
-- 

@@ -60,6 +60,10 @@ namespace MediaFileRecorder
 			return -1;
 		}
 
+		if (m_stRecordInfo.is_record_mic)
+			m_pMicAudioCapturer->SetDev(m_stRecordInfo.record_mic_dev_index);
+		//if (m_stRecordInfo.is_record_speaker) 
+		//	m_pMicAudioCapturer->SetDev(m_stRecordInfo.record_speaker_dev_index);
 		if (m_stRecordInfo.is_record_video)
 		{
 			const RECT& captureRect = m_stRecordInfo.video_capture_rect;

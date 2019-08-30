@@ -36,10 +36,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.combo_framerate = new System.Windows.Forms.ComboBox();
             this.lb_recset_notify = new System.Windows.Forms.Label();
-            this.btn_open_folder = new bells.app.ImageButton();
             this.check_recsound = new System.Windows.Forms.CheckBox();
             this.check_recmic = new System.Windows.Forms.CheckBox();
-            this.btn_choosedir = new bells.app.ImageButton();
             this.numeric_frame_rate = new System.Windows.Forms.NumericUpDown();
             this.textBox_export_dir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +48,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.combo_format = new System.Windows.Forms.ComboBox();
             this.pl_softset = new System.Windows.Forms.Panel();
+            this.check_top = new System.Windows.Forms.CheckBox();
+            this.check_show_preview = new System.Windows.Forms.CheckBox();
             this.check_use_sound_tip = new System.Windows.Forms.CheckBox();
             this.check_hide_whenrec = new System.Windows.Forms.CheckBox();
             this.check_usemini_inrec = new System.Windows.Forms.CheckBox();
@@ -68,43 +68,51 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pl_hotkeyset = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
             this.link_reboot = new System.Windows.Forms.LinkLabel();
             this.lb_keyset_notify = new System.Windows.Forms.Label();
-            this.hotKey_showhide = new ScreenRecoder.App.HotKeySelecter();
-            this.hotKey_stop = new ScreenRecoder.App.HotKeySelecter();
-            this.hotKey_pause = new ScreenRecoder.App.HotKeySelecter();
-            this.hotKey_start = new ScreenRecoder.App.HotKeySelecter();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label22 = new System.Windows.Forms.Label();
+            this.combo_mic = new System.Windows.Forms.ComboBox();
+            this.btn_exit = new ScreenRecoder.App.Controls.FlatButton();
             this.btn_ok = new ScreenRecoder.App.Controls.FlatButton();
             this.btn_reset_default = new ScreenRecoder.App.Controls.FlatButton();
+            this.btn_choosedir = new bells.app.ImageButton();
+            this.hotKey_screenshutcut = new ScreenRecoder.App.HotKeySelecter();
+            this.hotKey_showhide = new ScreenRecoder.App.HotKeySelecter();
+            this.hotKey_stop = new ScreenRecoder.App.HotKeySelecter();
+            this.hotKey_pause = new ScreenRecoder.App.HotKeySelecter();
+            this.hotKey_start = new ScreenRecoder.App.HotKeySelecter();
             this.tab_about = new ScreenRecoder.App.Controls.TabButton();
             this.tab_soft = new ScreenRecoder.App.Controls.TabButton();
             this.tab_hotkeys = new ScreenRecoder.App.Controls.TabButton();
             this.tab_recorder = new ScreenRecoder.App.Controls.TabButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_open_folder = new System.Windows.Forms.LinkLabel();
             this.pl_recset.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_open_folder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_choosedir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_frame_rate)).BeginInit();
             this.pl_softset.SuspendLayout();
             this.pl_about.SuspendLayout();
             this.pl_hotkeyset.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_choosedir)).BeginInit();
             this.SuspendLayout();
             // 
             // pl_recset
             // 
             this.pl_recset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.pl_recset.Controls.Add(this.btn_open_folder);
+            this.pl_recset.Controls.Add(this.combo_mic);
+            this.pl_recset.Controls.Add(this.label22);
             this.pl_recset.Controls.Add(this.radio_rect_rec);
             this.pl_recset.Controls.Add(this.check_fullscreen);
             this.pl_recset.Controls.Add(this.label20);
             this.pl_recset.Controls.Add(this.combo_framerate);
             this.pl_recset.Controls.Add(this.lb_recset_notify);
-            this.pl_recset.Controls.Add(this.btn_open_folder);
             this.pl_recset.Controls.Add(this.check_recsound);
             this.pl_recset.Controls.Add(this.check_recmic);
             this.pl_recset.Controls.Add(this.btn_choosedir);
@@ -128,11 +136,11 @@
             this.radio_rect_rec.AutoSize = true;
             this.radio_rect_rec.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radio_rect_rec.ForeColor = System.Drawing.Color.White;
-            this.radio_rect_rec.Location = new System.Drawing.Point(257, 32);
+            this.radio_rect_rec.Location = new System.Drawing.Point(251, 25);
             this.radio_rect_rec.Name = "radio_rect_rec";
             this.radio_rect_rec.Size = new System.Drawing.Size(74, 21);
             this.radio_rect_rec.TabIndex = 39;
-            this.radio_rect_rec.Text = "窗口录制";
+            this.radio_rect_rec.Text = "区域录制";
             this.radio_rect_rec.UseVisualStyleBackColor = true;
             // 
             // check_fullscreen
@@ -141,7 +149,7 @@
             this.check_fullscreen.Checked = true;
             this.check_fullscreen.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.check_fullscreen.ForeColor = System.Drawing.Color.White;
-            this.check_fullscreen.Location = new System.Drawing.Point(139, 32);
+            this.check_fullscreen.Location = new System.Drawing.Point(135, 25);
             this.check_fullscreen.Name = "check_fullscreen";
             this.check_fullscreen.Size = new System.Drawing.Size(74, 21);
             this.check_fullscreen.TabIndex = 38;
@@ -155,7 +163,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(37, 36);
+            this.label20.Location = new System.Drawing.Point(29, 29);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 17);
             this.label20.TabIndex = 36;
@@ -165,15 +173,16 @@
             // 
             this.combo_framerate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_framerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combo_framerate.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.combo_framerate.FormattingEnabled = true;
             this.combo_framerate.Items.AddRange(new object[] {
             "流畅 (15fps)",
             "高速 (20fps)",
             "极速 (30fps)",
             "自定义"});
-            this.combo_framerate.Location = new System.Drawing.Point(141, 111);
+            this.combo_framerate.Location = new System.Drawing.Point(133, 121);
             this.combo_framerate.Name = "combo_framerate";
-            this.combo_framerate.Size = new System.Drawing.Size(191, 20);
+            this.combo_framerate.Size = new System.Drawing.Size(191, 25);
             this.combo_framerate.TabIndex = 35;
             this.combo_framerate.SelectedIndexChanged += new System.EventHandler(this.combo_framerate_SelectedIndexChanged);
             // 
@@ -184,31 +193,13 @@
             this.lb_recset_notify.ForeColor = System.Drawing.Color.White;
             this.lb_recset_notify.Image = global::ScreenRecoder.App.Properties.Resources.ico_msg;
             this.lb_recset_notify.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lb_recset_notify.Location = new System.Drawing.Point(38, 314);
+            this.lb_recset_notify.Location = new System.Drawing.Point(38, 322);
             this.lb_recset_notify.Name = "lb_recset_notify";
             this.lb_recset_notify.Size = new System.Drawing.Size(254, 21);
             this.lb_recset_notify.TabIndex = 33;
             this.lb_recset_notify.Text = "您所更改的设置将在下次录像时应用";
             this.lb_recset_notify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_recset_notify.Visible = false;
-            // 
-            // btn_open_folder
-            // 
-            this.btn_open_folder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_open_folder.BackColor = System.Drawing.Color.Transparent;
-            this.btn_open_folder.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btn_open_folder.DownImage = ((System.Drawing.Image)(resources.GetObject("btn_open_folder.DownImage")));
-            this.btn_open_folder.HoverImage = ((System.Drawing.Image)(resources.GetObject("btn_open_folder.HoverImage")));
-            this.btn_open_folder.Location = new System.Drawing.Point(470, 263);
-            this.btn_open_folder.Name = "btn_open_folder";
-            this.btn_open_folder.NormalImage = ((System.Drawing.Image)(resources.GetObject("btn_open_folder.NormalImage")));
-            this.btn_open_folder.Size = new System.Drawing.Size(16, 16);
-            this.btn_open_folder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btn_open_folder.TabIndex = 34;
-            this.btn_open_folder.TabStop = false;
-            this.toolTip1.SetToolTip(this.btn_open_folder, "打开输出目录");
-            this.btn_open_folder.ToolTipText = null;
-            this.btn_open_folder.Click += new System.EventHandler(this.btn_open_folder_Click);
             // 
             // check_recsound
             // 
@@ -217,7 +208,7 @@
             this.check_recsound.CheckState = System.Windows.Forms.CheckState.Checked;
             this.check_recsound.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.check_recsound.ForeColor = System.Drawing.Color.White;
-            this.check_recsound.Location = new System.Drawing.Point(257, 68);
+            this.check_recsound.Location = new System.Drawing.Point(252, 52);
             this.check_recsound.Name = "check_recsound";
             this.check_recsound.Size = new System.Drawing.Size(75, 21);
             this.check_recsound.TabIndex = 25;
@@ -232,41 +223,25 @@
             this.check_recmic.CheckState = System.Windows.Forms.CheckState.Checked;
             this.check_recmic.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.check_recmic.ForeColor = System.Drawing.Color.White;
-            this.check_recmic.Location = new System.Drawing.Point(140, 68);
+            this.check_recmic.Location = new System.Drawing.Point(135, 52);
             this.check_recmic.Name = "check_recmic";
-            this.check_recmic.Size = new System.Drawing.Size(75, 21);
+            this.check_recmic.Size = new System.Drawing.Size(87, 21);
             this.check_recmic.TabIndex = 24;
-            this.check_recmic.Text = "录制鼠标";
+            this.check_recmic.Text = "录制麦克风";
             this.check_recmic.UseVisualStyleBackColor = true;
             this.check_recmic.CheckedChanged += new System.EventHandler(this.check_recmic_CheckedChanged);
             // 
-            // btn_choosedir
-            // 
-            this.btn_choosedir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_choosedir.BackColor = System.Drawing.Color.Transparent;
-            this.btn_choosedir.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btn_choosedir.DownImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_p;
-            this.btn_choosedir.HoverImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_h;
-            this.btn_choosedir.Location = new System.Drawing.Point(114, 262);
-            this.btn_choosedir.Name = "btn_choosedir";
-            this.btn_choosedir.NormalImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_n;
-            this.btn_choosedir.Size = new System.Drawing.Size(16, 16);
-            this.btn_choosedir.TabIndex = 21;
-            this.btn_choosedir.TabStop = false;
-            this.toolTip1.SetToolTip(this.btn_choosedir, "选择输出目录");
-            this.btn_choosedir.ToolTipText = null;
-            this.btn_choosedir.Click += new System.EventHandler(this.btn_choosedir_Click);
-            // 
             // numeric_frame_rate
             // 
-            this.numeric_frame_rate.Location = new System.Drawing.Point(348, 111);
+            this.numeric_frame_rate.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numeric_frame_rate.Location = new System.Drawing.Point(338, 121);
             this.numeric_frame_rate.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
             this.numeric_frame_rate.Name = "numeric_frame_rate";
-            this.numeric_frame_rate.Size = new System.Drawing.Size(49, 21);
+            this.numeric_frame_rate.Size = new System.Drawing.Size(49, 23);
             this.numeric_frame_rate.TabIndex = 12;
             this.numeric_frame_rate.Value = new decimal(new int[] {
             15,
@@ -278,9 +253,12 @@
             // 
             // textBox_export_dir
             // 
-            this.textBox_export_dir.Location = new System.Drawing.Point(143, 260);
+            this.textBox_export_dir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox_export_dir.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_export_dir.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBox_export_dir.Location = new System.Drawing.Point(135, 272);
             this.textBox_export_dir.Name = "textBox_export_dir";
-            this.textBox_export_dir.Size = new System.Drawing.Size(313, 21);
+            this.textBox_export_dir.Size = new System.Drawing.Size(313, 23);
             this.textBox_export_dir.TabIndex = 20;
             // 
             // label3
@@ -288,7 +266,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(38, 116);
+            this.label3.Location = new System.Drawing.Point(30, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 13;
@@ -299,7 +277,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(37, 261);
+            this.label7.Location = new System.Drawing.Point(30, 274);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 19;
@@ -311,7 +289,7 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Image = global::ScreenRecoder.App.Properties.Resources.ico_msg;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(108, 142);
+            this.label4.Location = new System.Drawing.Point(100, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(360, 21);
             this.label4.TabIndex = 14;
@@ -322,15 +300,16 @@
             // 
             this.combo_quality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_quality.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combo_quality.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.combo_quality.FormattingEnabled = true;
             this.combo_quality.Items.AddRange(new object[] {
             "默认",
             "普通",
             "高",
             "最高"});
-            this.combo_quality.Location = new System.Drawing.Point(143, 219);
+            this.combo_quality.Location = new System.Drawing.Point(135, 229);
             this.combo_quality.Name = "combo_quality";
-            this.combo_quality.Size = new System.Drawing.Size(313, 20);
+            this.combo_quality.Size = new System.Drawing.Size(311, 25);
             this.combo_quality.TabIndex = 18;
             this.combo_quality.SelectedIndexChanged += new System.EventHandler(this.combo_quality_SelectedIndexChanged);
             // 
@@ -339,7 +318,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(37, 176);
+            this.label5.Location = new System.Drawing.Point(29, 189);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 17);
             this.label5.TabIndex = 15;
@@ -350,7 +329,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(38, 220);
+            this.label6.Location = new System.Drawing.Point(29, 233);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 17);
             this.label6.TabIndex = 17;
@@ -360,6 +339,7 @@
             // 
             this.combo_format.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_format.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combo_format.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.combo_format.FormattingEnabled = true;
             this.combo_format.Items.AddRange(new object[] {
             "默认",
@@ -369,15 +349,17 @@
             "AVI (MPEG4)",
             "FLV",
             "WMV"});
-            this.combo_format.Location = new System.Drawing.Point(143, 175);
+            this.combo_format.Location = new System.Drawing.Point(135, 185);
             this.combo_format.Name = "combo_format";
-            this.combo_format.Size = new System.Drawing.Size(189, 20);
+            this.combo_format.Size = new System.Drawing.Size(189, 25);
             this.combo_format.TabIndex = 16;
             this.combo_format.SelectedIndexChanged += new System.EventHandler(this.combo_format_SelectedIndexChanged);
             // 
             // pl_softset
             // 
             this.pl_softset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.pl_softset.Controls.Add(this.check_top);
+            this.pl_softset.Controls.Add(this.check_show_preview);
             this.pl_softset.Controls.Add(this.check_use_sound_tip);
             this.pl_softset.Controls.Add(this.check_hide_whenrec);
             this.pl_softset.Controls.Add(this.check_usemini_inrec);
@@ -387,6 +369,34 @@
             this.pl_softset.Name = "pl_softset";
             this.pl_softset.Size = new System.Drawing.Size(507, 356);
             this.pl_softset.TabIndex = 34;
+            // 
+            // check_top
+            // 
+            this.check_top.AutoSize = true;
+            this.check_top.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.check_top.ForeColor = System.Drawing.Color.White;
+            this.check_top.Location = new System.Drawing.Point(56, 245);
+            this.check_top.Name = "check_top";
+            this.check_top.Size = new System.Drawing.Size(99, 21);
+            this.check_top.TabIndex = 14;
+            this.check_top.Text = "录制窗口置顶";
+            this.check_top.UseVisualStyleBackColor = true;
+            this.check_top.CheckedChanged += new System.EventHandler(this.check_top_CheckedChanged);
+            // 
+            // check_show_preview
+            // 
+            this.check_show_preview.AutoSize = true;
+            this.check_show_preview.Checked = true;
+            this.check_show_preview.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.check_show_preview.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.check_show_preview.ForeColor = System.Drawing.Color.White;
+            this.check_show_preview.Location = new System.Drawing.Point(56, 213);
+            this.check_show_preview.Name = "check_show_preview";
+            this.check_show_preview.Size = new System.Drawing.Size(111, 21);
+            this.check_show_preview.TabIndex = 13;
+            this.check_show_preview.Text = "使用小窗口预览";
+            this.check_show_preview.UseVisualStyleBackColor = true;
+            this.check_show_preview.CheckedChanged += new System.EventHandler(this.check_show_preview_CheckedChanged);
             // 
             // check_use_sound_tip
             // 
@@ -511,9 +521,9 @@
             this.label18.ForeColor = System.Drawing.Color.White;
             this.label18.Location = new System.Drawing.Point(245, 224);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(111, 17);
+            this.label18.Size = new System.Drawing.Size(69, 17);
             this.label18.TabIndex = 36;
-            this.label18.Text = "DreamFish（yzc）";
+            this.label18.Text = "DreamFish";
             // 
             // label17
             // 
@@ -535,7 +545,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(67, 17);
             this.label16.TabIndex = 34;
-            this.label16.Text = "2019/3/31";
+            this.label16.Text = "2019/8/31";
             // 
             // label15
             // 
@@ -546,7 +556,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 17);
             this.label15.TabIndex = 33;
-            this.label15.Text = "3.1.0.627";
+            this.label15.Text = "3.2.0.860";
             // 
             // label10
             // 
@@ -611,6 +621,8 @@
             // pl_hotkeyset
             // 
             this.pl_hotkeyset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.pl_hotkeyset.Controls.Add(this.hotKey_screenshutcut);
+            this.pl_hotkeyset.Controls.Add(this.label21);
             this.pl_hotkeyset.Controls.Add(this.link_reboot);
             this.pl_hotkeyset.Controls.Add(this.lb_keyset_notify);
             this.pl_hotkeyset.Controls.Add(this.hotKey_showhide);
@@ -627,6 +639,17 @@
             this.pl_hotkeyset.TabIndex = 36;
             this.pl_hotkeyset.Visible = false;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(44, 198);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 17);
+            this.label21.TabIndex = 34;
+            this.label21.Text = "截图";
+            // 
             // link_reboot
             // 
             this.link_reboot.AutoSize = true;
@@ -640,6 +663,7 @@
             this.link_reboot.TabStop = true;
             this.link_reboot.Text = "立即重启";
             this.link_reboot.Visible = false;
+            this.link_reboot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_reboot_LinkClicked);
             // 
             // lb_keyset_notify
             // 
@@ -655,42 +679,6 @@
             this.lb_keyset_notify.Text = "热键设置只有在重启软件以后才会生效";
             this.lb_keyset_notify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_keyset_notify.Visible = false;
-            // 
-            // hotKey_showhide
-            // 
-            this.hotKey_showhide.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hotKey_showhide.Location = new System.Drawing.Point(208, 158);
-            this.hotKey_showhide.Name = "hotKey_showhide";
-            this.hotKey_showhide.Size = new System.Drawing.Size(124, 23);
-            this.hotKey_showhide.TabIndex = 31;
-            this.hotKey_showhide.KeysChanged += new System.EventHandler(this.hotKey_showhide_KeysChanged);
-            // 
-            // hotKey_stop
-            // 
-            this.hotKey_stop.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hotKey_stop.Location = new System.Drawing.Point(208, 115);
-            this.hotKey_stop.Name = "hotKey_stop";
-            this.hotKey_stop.Size = new System.Drawing.Size(124, 23);
-            this.hotKey_stop.TabIndex = 30;
-            this.hotKey_stop.KeysChanged += new System.EventHandler(this.hotKey_stop_KeysChanged);
-            // 
-            // hotKey_pause
-            // 
-            this.hotKey_pause.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hotKey_pause.Location = new System.Drawing.Point(208, 73);
-            this.hotKey_pause.Name = "hotKey_pause";
-            this.hotKey_pause.Size = new System.Drawing.Size(124, 23);
-            this.hotKey_pause.TabIndex = 29;
-            this.hotKey_pause.KeysChanged += new System.EventHandler(this.hotKey_pause_KeysChanged);
-            // 
-            // hotKey_start
-            // 
-            this.hotKey_start.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hotKey_start.Location = new System.Drawing.Point(208, 32);
-            this.hotKey_start.Name = "hotKey_start";
-            this.hotKey_start.Size = new System.Drawing.Size(124, 23);
-            this.hotKey_start.TabIndex = 28;
-            this.hotKey_start.KeysChanged += new System.EventHandler(this.hotKey_start_KeysChanged);
             // 
             // label9
             // 
@@ -741,14 +729,54 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.panel1.Controls.Add(this.btn_ok);
             this.panel1.Controls.Add(this.btn_reset_default);
-            this.panel1.Controls.Add(this.pl_softset);
             this.panel1.Controls.Add(this.pl_recset);
             this.panel1.Controls.Add(this.pl_hotkeyset);
             this.panel1.Controls.Add(this.pl_about);
+            this.panel1.Controls.Add(this.pl_softset);
             this.panel1.Location = new System.Drawing.Point(119, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(510, 406);
             this.panel1.TabIndex = 43;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(30, 84);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(44, 17);
+            this.label22.TabIndex = 40;
+            this.label22.Text = "麦克风";
+            // 
+            // combo_mic
+            // 
+            this.combo_mic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_mic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combo_mic.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.combo_mic.FormattingEnabled = true;
+            this.combo_mic.Items.AddRange(new object[] {
+            "默认"});
+            this.combo_mic.Location = new System.Drawing.Point(133, 81);
+            this.combo_mic.Name = "combo_mic";
+            this.combo_mic.Size = new System.Drawing.Size(313, 25);
+            this.combo_mic.TabIndex = 41;
+            this.combo_mic.SelectedIndexChanged += new System.EventHandler(this.combo_mic_SelectedIndexChanged);
+            // 
+            // btn_exit
+            // 
+            this.btn_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btn_exit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btn_exit.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.btn_exit.Image = global::ScreenRecoder.App.Properties.Resources.ico_exit;
+            this.btn_exit.ImageSize = new System.Drawing.Size(18, 18);
+            this.btn_exit.Location = new System.Drawing.Point(65, 366);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btn_exit.Size = new System.Drawing.Size(24, 24);
+            this.btn_exit.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.btn_exit, "退出程序");
+            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
             // btn_ok
             // 
@@ -757,6 +785,8 @@
             this.btn_ok.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_ok.ForeColor = System.Drawing.Color.White;
             this.btn_ok.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            this.btn_ok.Image = null;
+            this.btn_ok.ImageSize = new System.Drawing.Size(20, 20);
             this.btn_ok.Location = new System.Drawing.Point(409, 366);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
@@ -772,6 +802,8 @@
             this.btn_reset_default.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_reset_default.ForeColor = System.Drawing.Color.White;
             this.btn_reset_default.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            this.btn_reset_default.Image = null;
+            this.btn_reset_default.ImageSize = new System.Drawing.Size(20, 20);
             this.btn_reset_default.Location = new System.Drawing.Point(16, 366);
             this.btn_reset_default.Name = "btn_reset_default";
             this.btn_reset_default.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
@@ -780,12 +812,76 @@
             this.btn_reset_default.Text = "恢复默认设置";
             this.btn_reset_default.Click += new System.EventHandler(this.btn_defsettings_Click);
             // 
+            // btn_choosedir
+            // 
+            this.btn_choosedir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_choosedir.BackColor = System.Drawing.Color.Transparent;
+            this.btn_choosedir.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btn_choosedir.DownImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_p;
+            this.btn_choosedir.HoverImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_h;
+            this.btn_choosedir.Location = new System.Drawing.Point(106, 275);
+            this.btn_choosedir.Name = "btn_choosedir";
+            this.btn_choosedir.NormalImage = global::ScreenRecoder.App.Properties.Resources.btn_folder_n;
+            this.btn_choosedir.Size = new System.Drawing.Size(16, 16);
+            this.btn_choosedir.TabIndex = 21;
+            this.btn_choosedir.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_choosedir, "选择输出目录");
+            this.btn_choosedir.ToolTipText = null;
+            this.btn_choosedir.Click += new System.EventHandler(this.btn_choosedir_Click);
+            // 
+            // hotKey_screenshutcut
+            // 
+            this.hotKey_screenshutcut.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hotKey_screenshutcut.Location = new System.Drawing.Point(208, 198);
+            this.hotKey_screenshutcut.Name = "hotKey_screenshutcut";
+            this.hotKey_screenshutcut.Size = new System.Drawing.Size(124, 23);
+            this.hotKey_screenshutcut.TabIndex = 35;
+            this.hotKey_screenshutcut.KeysChanged += new System.EventHandler(this.hotKey_screenshutcut_KeysChanged);
+            // 
+            // hotKey_showhide
+            // 
+            this.hotKey_showhide.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hotKey_showhide.Location = new System.Drawing.Point(208, 158);
+            this.hotKey_showhide.Name = "hotKey_showhide";
+            this.hotKey_showhide.Size = new System.Drawing.Size(124, 23);
+            this.hotKey_showhide.TabIndex = 31;
+            this.hotKey_showhide.KeysChanged += new System.EventHandler(this.hotKey_showhide_KeysChanged);
+            // 
+            // hotKey_stop
+            // 
+            this.hotKey_stop.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hotKey_stop.Location = new System.Drawing.Point(208, 115);
+            this.hotKey_stop.Name = "hotKey_stop";
+            this.hotKey_stop.Size = new System.Drawing.Size(124, 23);
+            this.hotKey_stop.TabIndex = 30;
+            this.hotKey_stop.KeysChanged += new System.EventHandler(this.hotKey_stop_KeysChanged);
+            // 
+            // hotKey_pause
+            // 
+            this.hotKey_pause.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hotKey_pause.Location = new System.Drawing.Point(208, 73);
+            this.hotKey_pause.Name = "hotKey_pause";
+            this.hotKey_pause.Size = new System.Drawing.Size(124, 23);
+            this.hotKey_pause.TabIndex = 29;
+            this.hotKey_pause.KeysChanged += new System.EventHandler(this.hotKey_pause_KeysChanged);
+            // 
+            // hotKey_start
+            // 
+            this.hotKey_start.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hotKey_start.Location = new System.Drawing.Point(208, 32);
+            this.hotKey_start.Name = "hotKey_start";
+            this.hotKey_start.Size = new System.Drawing.Size(124, 23);
+            this.hotKey_start.TabIndex = 28;
+            this.hotKey_start.KeysChanged += new System.EventHandler(this.hotKey_start_KeysChanged);
+            // 
             // tab_about
             // 
             this.tab_about.Active = false;
             this.tab_about.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tab_about.ForeColor = System.Drawing.Color.White;
             this.tab_about.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.tab_about.Image = null;
+            this.tab_about.ImageSize = new System.Drawing.Size(20, 20);
             this.tab_about.Location = new System.Drawing.Point(0, 108);
             this.tab_about.Name = "tab_about";
             this.tab_about.Size = new System.Drawing.Size(120, 30);
@@ -798,6 +894,8 @@
             this.tab_soft.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tab_soft.ForeColor = System.Drawing.Color.White;
             this.tab_soft.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.tab_soft.Image = null;
+            this.tab_soft.ImageSize = new System.Drawing.Size(20, 20);
             this.tab_soft.Location = new System.Drawing.Point(0, 75);
             this.tab_soft.Name = "tab_soft";
             this.tab_soft.Size = new System.Drawing.Size(120, 30);
@@ -810,6 +908,8 @@
             this.tab_hotkeys.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tab_hotkeys.ForeColor = System.Drawing.Color.White;
             this.tab_hotkeys.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.tab_hotkeys.Image = null;
+            this.tab_hotkeys.ImageSize = new System.Drawing.Size(20, 20);
             this.tab_hotkeys.Location = new System.Drawing.Point(0, 43);
             this.tab_hotkeys.Name = "tab_hotkeys";
             this.tab_hotkeys.Size = new System.Drawing.Size(120, 30);
@@ -822,18 +922,36 @@
             this.tab_recorder.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tab_recorder.ForeColor = System.Drawing.Color.White;
             this.tab_recorder.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.tab_recorder.Image = null;
+            this.tab_recorder.ImageSize = new System.Drawing.Size(20, 20);
             this.tab_recorder.Location = new System.Drawing.Point(0, 12);
             this.tab_recorder.Name = "tab_recorder";
             this.tab_recorder.Size = new System.Drawing.Size(120, 30);
             this.tab_recorder.TabIndex = 37;
             this.tab_recorder.Text = "录制设置";
             // 
+            // btn_open_folder
+            // 
+            this.btn_open_folder.AutoSize = true;
+            this.btn_open_folder.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_open_folder.ForeColor = System.Drawing.Color.White;
+            this.btn_open_folder.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.btn_open_folder.LinkColor = System.Drawing.Color.White;
+            this.btn_open_folder.Location = new System.Drawing.Point(368, 298);
+            this.btn_open_folder.Name = "btn_open_folder";
+            this.btn_open_folder.Size = new System.Drawing.Size(80, 17);
+            this.btn_open_folder.TabIndex = 42;
+            this.btn_open_folder.TabStop = true;
+            this.btn_open_folder.Text = "打开输出目录";
+            this.btn_open_folder.Click += new System.EventHandler(this.btn_open_folder_Click);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(626, 402);
+            this.ClientSize = new System.Drawing.Size(626, 410);
+            this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tab_about);
             this.Controls.Add(this.tab_soft);
@@ -845,11 +963,10 @@
             this.Name = "FormSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "屏幕录制设置";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettings_FormClosing);
             this.Load += new System.EventHandler(this.FormSettings_Load);
             this.pl_recset.ResumeLayout(false);
             this.pl_recset.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_open_folder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_choosedir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_frame_rate)).EndInit();
             this.pl_softset.ResumeLayout(false);
             this.pl_softset.PerformLayout();
@@ -858,6 +975,7 @@
             this.pl_hotkeyset.ResumeLayout(false);
             this.pl_hotkeyset.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btn_choosedir)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -865,7 +983,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pl_recset;
-        private bells.app.ImageButton btn_open_folder;
         private System.Windows.Forms.Label lb_recset_notify;
         private bells.app.ImageButton btn_choosedir;
         private System.Windows.Forms.TextBox textBox_export_dir;
@@ -920,5 +1037,13 @@
         public System.Windows.Forms.CheckBox check_recsound;
         public System.Windows.Forms.CheckBox check_recmic;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox check_show_preview;
+        private HotKeySelecter hotKey_screenshutcut;
+        private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.CheckBox check_top;
+        private Controls.FlatButton btn_exit;
+        private System.Windows.Forms.ComboBox combo_mic;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.LinkLabel btn_open_folder;
     }
 }

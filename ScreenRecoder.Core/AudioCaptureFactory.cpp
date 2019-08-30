@@ -21,10 +21,8 @@ namespace MediaFileRecorder
 		return pAudioCapture;
 	}
 
-
 	void DestroyAudioCatpure(IAudioCapture* pAudioCapture)
 	{
 		delete pAudioCapture;
 	}
-
 }

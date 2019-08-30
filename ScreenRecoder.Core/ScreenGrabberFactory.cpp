@@ -10,6 +10,7 @@ namespace MediaFileRecorder
 	IScreenGrabber* CreateScreenGrabber()
 	{
 		IScreenGrabber* pScreenGrabber = new CScreenGdiGrabber();
+		//IScreenGrabber* pScreenGrabber = new CScreenDXGrabber();
 		return pScreenGrabber;
 	}
 

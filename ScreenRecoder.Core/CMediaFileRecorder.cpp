@@ -72,7 +72,7 @@ namespace MediaFileRecorder
 			return -1;
 		}
 
-		ret = avio_open(&m_pFormatCtx->pb, m_stRecordInfo.file_name, AVIO_FLAG_READ_WRITE);
+		ret = avio_open2(&m_pFormatCtx->pb, m_stRecordInfo.file_name, AVIO_FLAG_READ_WRITE, NULL, NULL);
 		if (ret < 0)
 		{
 			Error("avio_open failed, ret: %d", ret);
@@ -123,6 +123,7 @@ namespace MediaFileRecorder
 		}
 
 		m_nVideoStreamIndex = m_pFormatCtx->nb_streams - 1;
+
 		/*m_pVideoCodecCtx = avcodec_alloc_context3(NULL);
 		if (!m_pVideoCodecCtx)
 		{
@@ -133,6 +134,7 @@ namespace MediaFileRecorder
 		avcodec_parameters_to_context(m_pVideoCodecCtx, pVideoStream->codecpar);*/
 
 		m_pVideoCodecCtx = pVideoStream->codec;
+
 		AVCodecID avcodecid = AV_CODEC_ID_H264;
 		switch (m_stRecordInfo.format)
 		{
@@ -158,7 +160,7 @@ namespace MediaFileRecorder
 			break;
 		}
 
-		m_pVideoCodecCtx->codec_id = AV_CODEC_ID_H264;
+		m_pVideoCodecCtx->codec_id = avcodecid;
 		m_pVideoCodecCtx->codec_type = AVMEDIA_TYPE_VIDEO;
 		m_pVideoCodecCtx->pix_fmt = AV_PIX_FMT_YUV420P;
 		m_pVideoCodecCtx->width = m_stRecordInfo.video_dst_width;
@@ -166,7 +168,7 @@ namespace MediaFileRecorder
 
 		m_pVideoCodecCtx->time_base.num = 1;
 		m_pVideoCodecCtx->time_base.den = m_stRecordInfo.video_frame_rate;
-		m_pVideoCodecCtx->thread_count = 5;
+		m_pVideoCodecCtx->thread_count = m_stRecordInfo.thread_count;
 
 		m_pVideoCodecCtx->qcompress = (float)0.6;
 		m_pVideoCodecCtx->max_qdiff = 4;
@@ -178,6 +180,7 @@ namespace MediaFileRecorder
 		m_pVideoCodecCtx->gop_size = m_stRecordInfo.video_frame_rate * 10;
 
 		const char* crf = "23";
+
 		if (m_stRecordInfo.quality == NORMAL)
 		{
 			crf = "28";
@@ -190,6 +193,7 @@ namespace MediaFileRecorder
 		{
 			crf = "18";
 		}
+
 		AVDictionary *param = 0;
 		av_dict_set(&param, "preset", "veryfast", 0);
 		av_dict_set(&param, "tune", "zerolatency", 0);
@@ -550,13 +554,10 @@ namespace MediaFileRecorder
 					MixAudio(pMainFrame, pChildFrame);
 			}
 		}
-		else if (m_stRecordInfo.is_record_speaker)
-			pMainFrame = m_pSpeakerRecorder->GetOneFrame();
-		else
-			pMainFrame = m_pMicRecorder->GetOneFrame();
+		else if (m_stRecordInfo.is_record_speaker) pMainFrame = m_pSpeakerRecorder->GetOneFrame();
+		else pMainFrame = m_pMicRecorder->GetOneFrame();
 
 		int64_t mix_time = timeGetTime() - begin_time;
-
 		if (pMainFrame)
 		{
 			int got_packet = 0;

@@ -131,7 +131,7 @@
             this.MinimumSize = new System.Drawing.Size(160, 92);
             this.Name = "FormRect";
             this.ShowInTaskbar = false;
-            this.Text = "FormRect";
+            this.Text = "屏幕录像 区域选择窗口";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.EnabledChanged += new System.EventHandler(this.FormRect_EnabledChanged);

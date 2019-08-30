@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreenRecoder.App.Api;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -39,7 +40,7 @@ namespace ScreenRecoder.App
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            API.WindowMove(Handle);
+            WindowUtils.Move(Handle);
         }
 
         private void FormRect_SizeChanged(object sender, EventArgs e)
@@ -275,9 +276,9 @@ namespace ScreenRecoder.App
         }
         private void label4_Click(object sender, EventArgs e)
         {
-            bool mainShow = API.WindowIsVisible(FormMain.formMain.Handle);
-            if(mainShow) API.WindowHide(FormMain.formMain.Handle);
-            API.WindowHide(Handle);
+            bool mainShow = WindowUtils.IsVisible(FormMain.formMain.Handle);
+            if(mainShow) WindowUtils.Hide(FormMain.formMain.Handle);
+            WindowUtils.Hide(Handle);
             FormChooseWindow formChooseWindow = new FormChooseWindow();
             if (formChooseWindow.ShowDialog()== DialogResult.OK)
             {
@@ -292,14 +293,16 @@ namespace ScreenRecoder.App
                     resizeTargetSize = Size.Empty;
                 }
             }
-            if (mainShow) API.WindowShow(FormMain.formMain.Handle);
-            API.WindowShow(Handle);
+            if (mainShow) WindowUtils.Show(FormMain.formMain.Handle);
+            WindowUtils.Show(Handle);
         }
 
         private void FormRect_EnabledChanged(object sender, EventArgs e)
         {
             if(!Enabled)
             {
+                TopMost = false;
+                WindowUtils.Bottom(Handle);
                 label1.BackColor = Color.Gray;
                 label2.BackColor = Color.Gray;
                 label3.BackColor = Color.Gray;
@@ -310,6 +313,8 @@ namespace ScreenRecoder.App
             }
             else
             {
+                TopMost = true;
+                WindowUtils.Top(Handle);
                 label1.BackColor = Color.Red;
                 label2.BackColor = Color.Red;
                 label3.BackColor = Color.Red;

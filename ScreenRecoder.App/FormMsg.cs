@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreenRecoder.App.Api;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -52,7 +53,7 @@ namespace ScreenRecoder.App
 
         private void pl_title_MouseDown(object sender, MouseEventArgs e)
         {
-            API.WindowMove(Handle);
+            WindowUtils.Move(Handle);
         }
 
         private void btn_ok_Click(object sender, EventArgs e)

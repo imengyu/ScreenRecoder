@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreenRecoder.App.Api;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -48,13 +49,13 @@ namespace ScreenRecoder.App
         }
         private void btn_huge_BtnClick(object sender, EventArgs e)
         {
-            API.WindowHide(Handle);
-            API.WindowShow(FormMain.formMain.Handle);
+            WindowUtils.Hide(Handle);
+            WindowUtils.Show(FormMain.formMain.Handle);
         }
 
         private void lb_time_MouseDown(object sender, MouseEventArgs e)
         {
-            API.WindowMove(Handle);
+            WindowUtils.Move(Handle);
         }
 
         private void FormRecMini_Load(object sender, EventArgs e)

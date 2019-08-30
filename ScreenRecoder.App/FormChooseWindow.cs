@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreenRecoder.App.Api;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -112,12 +113,12 @@ namespace ScreenRecoder.App
             if (!canfind) canfind = true;
         }
 
-        protected override CreateParams CreateParams {
+        protected override CreateParams CreateParams
+        {
             get
             {
                 CreateParams cp = base.CreateParams;
-                //加上 WS_EX_TRANSPARENT 可以让ChildWindowFromPointEx函数忽略本窗口
-                cp.ExStyle |= 0x00000020;
+                cp.ExStyle |= API.WS_EX_TRANSPARENT;
                 return cp;
             }
         }

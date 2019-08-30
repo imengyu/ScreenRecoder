@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace ScreenRecoder.App
+namespace ScreenRecoder.App.Core
 {
     //录制底层库
     public class Recorder
@@ -35,44 +35,33 @@ namespace ScreenRecoder.App
         public delegate void UpdateCallback(UpdateCallbackID id, IntPtr data);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderDestroy();
+        public static extern void Destroy();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderCreate();
+        public static extern void Create();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderPauseButton();
+        public static extern bool PauseButton();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderStopButton();
+        public static extern bool StopButton();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern bool RecoderStartButton();
+        public static extern bool StartButton();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderSetUpdateCallback(IntPtr callback);
+        public static extern void SetUpdateCallback(IntPtr callback);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderSetOutFileDir(string filename);
+        public static extern void SetOutFileDir(string filename);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderSetNextOutFileName(string filename);
+        public static extern void SetNextOutFileName(string filename);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderSetCaptureRect(int x, int y, int w, int h);
+        public static extern void SetCaptureRect(int x, int y, int w, int h);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderSetCaptureFrameRate(int rate);
+        public static extern void SetCaptureFrameRate(int rate);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern string RecoderGetLastOutFileName();
+        public static extern string GetLastOutFileName();
         [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void RecoderDrawPreviewRect(IntPtr hdc, int x, int y, int w, int h, int tw, int th);
+        public static extern void DrawPreviewRect(IntPtr hdc, int x, int y, int w, int h, int tw, int th);
 
-        public static extern VIDEO_FORMAT RecordFormat
-        {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            set;
-        }
-        public static extern int RecordQuality
-        {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            set;
-        }
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern string[] GetAudioCaptureDevices();
+
         public static extern Record_State State
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
@@ -97,6 +86,28 @@ namespace ScreenRecoder.App
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get;
+        }
+
+        public static extern VIDEO_FORMAT RecordFormat
+        {
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            get;
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            set;
+        }
+        public static extern int RecordQuality
+        {
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            get;
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            set;
+        }
+        public static extern int RecordMicDevIndex
+        {
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            get;
+            [MethodImpl(MethodImplOptions.InternalCall)]
+            set;
         }
         public static extern bool RecordSound
         {

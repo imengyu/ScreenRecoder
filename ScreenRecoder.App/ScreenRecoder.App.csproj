@@ -49,7 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API.cs" />
+    <Compile Include="Api\API.cs" />
+    <Compile Include="Api\AppUtils.cs" />
+    <Compile Include="Api\DialogUtils.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Api\WindowUtils.cs" />
+    <Compile Include="Controls\CheckGroup.cs" />
+    <Compile Include="Controls\ColorToolbar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\FileBorserDialog.cs" />
     <Compile Include="Controls\FlatButton.cs">
       <SubType>Component</SubType>
@@ -63,6 +71,30 @@
     </Compile>
     <Compile Include="Controls\Toggle.Designer.cs">
       <DependentUpon>Toggle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebug.Designer.cs">
+      <DependentUpon>FormDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditScreenShutTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditScreenShutTools.Designer.cs">
+      <DependentUpon>FormEditScreenShutTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScreenShutcut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScreenShutcut.Designer.cs">
+      <DependentUpon>FormScreenShutcut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormColorPick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormColorPick.Designer.cs">
+      <DependentUpon>FormColorPick.cs</DependentUpon>
     </Compile>
     <Compile Include="FormChooseWindow.cs">
       <SubType>Form</SubType>
@@ -124,6 +156,15 @@
     <Compile Include="Controls\ImageButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PaintBox\PaintArrow.cs" />
+    <Compile Include="PaintBox\PaintBox.cs" />
+    <Compile Include="PaintBox\PaintMosaic.cs" />
+    <Compile Include="PaintBox\PaintObject.cs" />
+    <Compile Include="PaintBox\PaintEllipse.cs" />
+    <Compile Include="PaintBox\PaintPen.cs" />
+    <Compile Include="PaintBox\PaintRectangle.cs" />
+    <Compile Include="PaintBox\PaintText.cs" />
+    <Compile Include="PaintBox\PaintTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -131,10 +172,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Recorder.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Core\Recorder.cs" />
+    <Compile Include="Utils\DebugUtils.cs" />
+    <Compile Include="Utils\Settings.cs" />
     <EmbeddedResource Include="Controls\Toggle.resx">
       <DependentUpon>Toggle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebug.resx">
+      <DependentUpon>FormDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditScreenShutTools.resx">
+      <DependentUpon>FormEditScreenShutTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScreenShutcut.resx">
+      <DependentUpon>FormScreenShutcut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorPick.resx">
+      <DependentUpon>FormColorPick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChooseWindow.resx">
       <DependentUpon>FormChooseWindow.cs</DependentUpon>
@@ -282,6 +336,34 @@
     <None Include="Resources\ico_mouse_on.png" />
     <None Include="Resources\ico_sound_off.png" />
     <None Include="Resources\ico_sound_on.png" />
+    <None Include="Resources\ico_rec_success.png" />
+    <None Include="Resources\ico_screenshotcct.png" />
+    <None Include="Resources\drag_point.png" />
+    <None Include="Resources\ico_tools_arrow.png" />
+    <None Include="Resources\ico_tools_box.png" />
+    <None Include="Resources\ico_tools_ellipse.png" />
+    <None Include="Resources\ico_tools_mosaic.png" />
+    <None Include="Resources\ico_tools_pen.png" />
+    <None Include="Resources\ico_tools_redo.png" />
+    <None Include="Resources\ico_tools_ok.png" />
+    <None Include="Resources\ico_tools_cancel.png" />
+    <None Include="Resources\ico_tools_save.png" />
+    <None Include="Resources\ico_tools_width_bold.png" />
+    <None Include="Resources\ico_tools_width_normal.png" />
+    <None Include="Resources\ico_tools_width_thing.png" />
+    <None Include="Resources\ico_tools_text.png" />
+    <None Include="Resources\cur_default.cur" />
+    <None Include="Resources\cur_pen.cur" />
+    <None Include="Resources\cur_brush_big.cur" />
+    <None Include="Resources\cur_brush_normal.cur" />
+    <None Include="Resources\cur_brush_small.cur" />
+    <None Include="Resources\图钉%281%29.png" />
+    <None Include="Resources\图钉%282%29.png" />
+    <None Include="Resources\ico_top_on.png" />
+    <None Include="Resources\ico_top_off.png" />
+    <None Include="Resources\ico_exit.png" />
+    <None Include="Resources\ico_mic_off.png" />
+    <None Include="Resources\ico_mic_on.png" />
     <Content Include="ScreenRecoderIco.ico" />
   </ItemGroup>
   <ItemGroup />

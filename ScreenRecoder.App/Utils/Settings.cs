@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreenRecoder.App.Api;
+using System;
 using System.Windows.Forms;
 
 namespace ScreenRecoder.App
@@ -14,6 +15,7 @@ namespace ScreenRecoder.App
             notify_when_finish = true,
             show_mini_recing = true,
             show_preview = true,
+            window_top = true,
             playsound = true,
             hide_wnd_when_rec = false;
         public static int last_x = 0,
@@ -22,7 +24,8 @@ namespace ScreenRecoder.App
             last_h = 0,
             last_appx = 0,
             last_appy = 0,
-            quality = 1;
+            quality = 1,
+            mic_index;
         public static int frame_rate = 15;
         public static string VideoType = "DEFAULT",
             SaveDir = "DEFAULT";
@@ -30,6 +33,7 @@ namespace ScreenRecoder.App
         public static Keys[] hotkey_stop = new Keys[3];
         public static Keys[] hotkey_pause = new Keys[3];
         public static Keys[] hotkey_showehide = new Keys[3];
+        public static Keys[] hotkey_screenshutcut = new Keys[3];
 
         //读取
         public static void LoadSettings()
@@ -40,7 +44,7 @@ namespace ScreenRecoder.App
             int.TryParse(API.IniReadValue("AppSetting", "LastAppY", "0"), out last_appy);
             f = API.IniReadValue("AppSetting", "NotifyWhenFinished", "True");
             notify_when_finish = f == "True" || f == "true" || f == "1" || f == "TRUE";
-            f = API.IniReadValue("AppSetting", "HideWindowWhenRecording", "Fale");
+            f = API.IniReadValue("AppSetting", "HideWindowWhenRecording", "False");
             hide_wnd_when_rec = f == "True" || f == "true" || f == "1" || f == "TRUE";
             f = API.IniReadValue("AppSetting", "UseMiniWindowWhenRecording", "True");
             show_mini_recing = f == "True" || f == "true" || f == "1" || f == "TRUE";
@@ -48,8 +52,10 @@ namespace ScreenRecoder.App
             show_preview = f == "True" || f == "true" || f == "1" || f == "TRUE";
             f = API.IniReadValue("AppSetting", "PlaySoundTip", "True");
             playsound = f == "True" || f == "true" || f == "1" || f == "TRUE";
+            f = API.IniReadValue("AppSetting", "TopMost", "False");
+            window_top = f == "True" || f == "true" || f == "1" || f == "TRUE";
 
-            string s = API.IniReadValue("HotKeySetting", "Start", "");
+            string s = API.IniReadValue("HotKeySetting", "Start", "F1,None,None");
             if (s.Contains(","))
             {
                 try
@@ -63,7 +69,7 @@ namespace ScreenRecoder.App
 
                 }
             }
-            s = API.IniReadValue("HotKeySetting", "PauseContinue", "");
+            s = API.IniReadValue("HotKeySetting", "PauseContinue", "F2,None,None");
             if (s.Contains(","))
             {
                 try
@@ -77,7 +83,7 @@ namespace ScreenRecoder.App
 
                 }
             }
-            s = API.IniReadValue("HotKeySetting", "Stop", "");
+            s = API.IniReadValue("HotKeySetting", "Stop", "F3,None,None");
             if (s.Contains(","))
             {
                 try
@@ -91,7 +97,7 @@ namespace ScreenRecoder.App
 
                 }
             }
-            s = API.IniReadValue("HotKeySetting", "ShowHide", "");
+            s = API.IniReadValue("HotKeySetting", "ShowHide", "R,Shift,None");
             if (s.Contains(","))
             {
                 try
@@ -99,6 +105,20 @@ namespace ScreenRecoder.App
                     string[] ss = s.Split(',');
                     for (int i = 0; i < 3 && i < ss.Length; i++)
                         hotkey_showehide[i] = (Keys)Enum.Parse(typeof(Keys), ss[i]);
+                }
+                catch
+                {
+
+                }
+            }
+            s = API.IniReadValue("HotKeySetting", "ScreenShutcut", "None,None,None");
+            if (s.Contains(","))
+            {
+                try
+                {
+                    string[] ss = s.Split(',');
+                    for (int i = 0; i < 3 && i < ss.Length; i++)
+                        hotkey_screenshutcut[i] = (Keys)Enum.Parse(typeof(Keys), ss[i]);
                 }
                 catch
                 {
@@ -120,8 +140,10 @@ namespace ScreenRecoder.App
             int.TryParse(API.IniReadValue("RecorderSetting", "LastY", "0"), out last_y);
             int.TryParse(API.IniReadValue("RecorderSetting", "LastW", "0"), out last_w);
             int.TryParse(API.IniReadValue("RecorderSetting", "LastH", "0"), out last_h);
-
+            int.TryParse(API.IniReadValue("RecorderSetting", "MicIndex", "-1"), out mic_index);
             int.TryParse(API.IniReadValue("RecorderSetting", "FrameRate", "15"), out frame_rate);
+            if (frame_rate < 10) frame_rate = 10;
+            if (frame_rate > 30) frame_rate = 30;
             VideoType = API.IniReadValue("RecorderSetting", "VideoType", "DEFAULT");
             SaveDir = API.IniReadValue("RecorderSetting", "SaveDir", "DEFAULT");
         }
@@ -130,6 +152,7 @@ namespace ScreenRecoder.App
         {
             API.IniWriteValue("AppSetting", "HideWindowWhenRecording", hide_wnd_when_rec ? "True" : "False");
             API.IniWriteValue("AppSetting", "ShowPreview", show_preview ? "True" : "False");
+            API.IniWriteValue("AppSetting", "TopMost", window_top ? "True" : "False");
             API.IniWriteValue("AppSetting", "UseMiniWindowWhenRecording", show_mini_recing ? "True" : "False");
             API.IniWriteValue("AppSetting", "NotifyWhenFinished", notify_when_finish ? "True" : "False");
             API.IniWriteValue("AppSetting", "Rempos", rempos ? "True" : "False");
@@ -146,6 +169,7 @@ namespace ScreenRecoder.App
             API.IniWriteValue("RecorderSetting", "LastY", last_y.ToString());
             API.IniWriteValue("RecorderSetting", "LastW", last_w.ToString());
             API.IniWriteValue("RecorderSetting", "LastH", last_h.ToString());
+            API.IniWriteValue("RecorderSetting", "MicIndex", mic_index.ToString());
 
             API.IniWriteValue("RecorderSetting", "VideoType", VideoType);
             API.IniWriteValue("RecorderSetting", "SaveDir", SaveDir);
@@ -178,6 +202,13 @@ namespace ScreenRecoder.App
                 else s += "," + hotkey_showehide[i].ToString();
             }
             API.IniWriteValue("HotKeySetting", "ShowHide", s);
+            s = "";
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 0) s += hotkey_screenshutcut[i].ToString();
+                else s += "," + hotkey_screenshutcut[i].ToString();
+            }
+            API.IniWriteValue("HotKeySetting", "ScreenShutcut", s);
         }
     }
 }

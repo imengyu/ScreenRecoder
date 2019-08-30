@@ -24,6 +24,8 @@ namespace ScreenRecoder.App.Controls
             _StringFormat.LineAlignment = StringAlignment.Center;
         }
 
+        public Image Image { get; set; }
+        public Size ImageSize { get; set; } = new Size(20, 20);
         public Color BorderColor { get; set; } = Color.FromArgb(31, 31, 31);
         public Color HoverColor { get; set; } = Color.FromArgb(66, 66, 66);
         public Color PressColor { get; set; } = Color.FromArgb(36, 36, 36);
@@ -44,6 +46,11 @@ namespace ScreenRecoder.App.Controls
             {
                 using (SolidBrush bgBrush = new SolidBrush(HoverColor))
                     e.Graphics.FillRectangle(bgBrush, new Rectangle(0, 0, Width, Height));
+            }
+            if (Image != null)
+            {
+                e.Graphics.DrawImage(Image, Width / 2 - ImageSize.Width / 2,
+                 Height / 2 - ImageSize.Height / 2, ImageSize.Width, ImageSize.Height);
             }
             using (SolidBrush drawBrush = new SolidBrush(base.ForeColor))
             {

@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btn_rec_mouse = new System.Windows.Forms.PictureBox();
+            this.btn_top = new System.Windows.Forms.PictureBox();
+            this.btn_rec_mic = new System.Windows.Forms.PictureBox();
             this.btn_rec_sound = new System.Windows.Forms.PictureBox();
             this.lb_time = new System.Windows.Forms.Label();
             this.pl_rec = new System.Windows.Forms.Panel();
@@ -44,46 +45,68 @@
             this.退出软件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lb_fullscreen = new System.Windows.Forms.Label();
             this.lb_rectrec = new System.Windows.Forms.Label();
-            this.pb_preview = new System.Windows.Forms.PictureBox();
             this.timerPreview = new System.Windows.Forms.Timer(this.components);
             this.lb_recing_bottom = new System.Windows.Forms.Label();
             this.pl_footer = new System.Windows.Forms.Panel();
+            this.pl_rec_finish = new System.Windows.Forms.Panel();
+            this.lb_reced_info = new System.Windows.Forms.Label();
+            this.lb_reced_title = new System.Windows.Forms.Label();
+            this.pb_reced = new System.Windows.Forms.PictureBox();
+            this.pb_preview = new System.Windows.Forms.PictureBox();
+            this.btn_screen_shotcut = new ScreenRecoder.App.IconButton();
             this.toggle_fullscreen = new ScreenRecoder.App.Controls.Toggle();
-            this.btn_preview = new ScreenRecoder.App.IconButton();
             this.btn_min = new bells.app.ImageButton();
             this.btn_close = new bells.app.ImageButton();
             this.btn_setting = new ScreenRecoder.App.IconButton();
             this.btn_stop = new ScreenRecoder.App.IconButton();
             this.btn_pause = new ScreenRecoder.App.IconButton();
             this.btn_start = new ScreenRecoder.App.IconButton();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_rec_mouse)).BeginInit();
+            this.btn_open_reced = new ScreenRecoder.App.Controls.FlatButton();
+            this.btn_continue_rec = new ScreenRecoder.App.Controls.FlatButton();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_top)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_rec_mic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_rec_sound)).BeginInit();
             this.pl_rec.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_preview)).BeginInit();
             this.pl_footer.SuspendLayout();
+            this.pl_rec_finish.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_reced)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_preview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_min)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_rec_mouse
+            // btn_top
             // 
-            this.btn_rec_mouse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_rec_mouse.Image = global::ScreenRecoder.App.Properties.Resources.ico_mouse_off;
-            this.btn_rec_mouse.Location = new System.Drawing.Point(294, 13);
-            this.btn_rec_mouse.Name = "btn_rec_mouse";
-            this.btn_rec_mouse.Size = new System.Drawing.Size(23, 23);
-            this.btn_rec_mouse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btn_rec_mouse.TabIndex = 11;
-            this.btn_rec_mouse.TabStop = false;
-            this.toolTip1.SetToolTip(this.btn_rec_mouse, "录制鼠标");
-            this.btn_rec_mouse.Click += new System.EventHandler(this.btn_rec_mouse_Click);
+            this.btn_top.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_top.Image = global::ScreenRecoder.App.Properties.Resources.ico_top_off;
+            this.btn_top.Location = new System.Drawing.Point(295, 14);
+            this.btn_top.Name = "btn_top";
+            this.btn_top.Size = new System.Drawing.Size(20, 20);
+            this.btn_top.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btn_top.TabIndex = 14;
+            this.btn_top.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_top, "窗口置顶");
+            this.btn_top.Click += new System.EventHandler(this.btn_top_Click);
+            // 
+            // btn_rec_mic
+            // 
+            this.btn_rec_mic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_rec_mic.Image = global::ScreenRecoder.App.Properties.Resources.ico_mic_off;
+            this.btn_rec_mic.Location = new System.Drawing.Point(266, 16);
+            this.btn_rec_mic.Name = "btn_rec_mic";
+            this.btn_rec_mic.Size = new System.Drawing.Size(18, 18);
+            this.btn_rec_mic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btn_rec_mic.TabIndex = 11;
+            this.btn_rec_mic.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_rec_mic, "录制麦克风");
+            this.btn_rec_mic.Click += new System.EventHandler(this.btn_rec_mic_Click);
             // 
             // btn_rec_sound
             // 
             this.btn_rec_sound.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_rec_sound.Image = global::ScreenRecoder.App.Properties.Resources.ico_sound_off;
-            this.btn_rec_sound.Location = new System.Drawing.Point(261, 13);
+            this.btn_rec_sound.Location = new System.Drawing.Point(233, 13);
             this.btn_rec_sound.Name = "btn_rec_sound";
             this.btn_rec_sound.Size = new System.Drawing.Size(23, 23);
             this.btn_rec_sound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -98,9 +121,9 @@
             this.lb_time.BackColor = System.Drawing.Color.DarkRed;
             this.lb_time.Font = new System.Drawing.Font("宋体", 9F);
             this.lb_time.ForeColor = System.Drawing.Color.White;
-            this.lb_time.Location = new System.Drawing.Point(110, 0);
+            this.lb_time.Location = new System.Drawing.Point(110, 1);
             this.lb_time.Name = "lb_time";
-            this.lb_time.Size = new System.Drawing.Size(92, 60);
+            this.lb_time.Size = new System.Drawing.Size(97, 60);
             this.lb_time.TabIndex = 1;
             this.lb_time.Text = "0:00:00";
             this.lb_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,7 +136,7 @@
             this.pl_rec.Controls.Add(this.btn_pause);
             this.pl_rec.Location = new System.Drawing.Point(1, 1);
             this.pl_rec.Name = "pl_rec";
-            this.pl_rec.Size = new System.Drawing.Size(249, 60);
+            this.pl_rec.Size = new System.Drawing.Size(207, 60);
             this.pl_rec.TabIndex = 4;
             this.pl_rec.Visible = false;
             // 
@@ -123,9 +146,9 @@
             this.lb_tip.BackColor = System.Drawing.Color.Transparent;
             this.lb_tip.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_tip.ForeColor = System.Drawing.Color.White;
-            this.lb_tip.Location = new System.Drawing.Point(53, 1);
+            this.lb_tip.Location = new System.Drawing.Point(56, 1);
             this.lb_tip.Name = "lb_tip";
-            this.lb_tip.Size = new System.Drawing.Size(149, 58);
+            this.lb_tip.Size = new System.Drawing.Size(147, 58);
             this.lb_tip.TabIndex = 5;
             this.lb_tip.Text = "点击红点开始录像";
             this.lb_tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -176,7 +199,7 @@
             this.lb_fullscreen.AutoSize = true;
             this.lb_fullscreen.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lb_fullscreen.ForeColor = System.Drawing.Color.White;
-            this.lb_fullscreen.Location = new System.Drawing.Point(116, 16);
+            this.lb_fullscreen.Location = new System.Drawing.Point(125, 16);
             this.lb_fullscreen.Name = "lb_fullscreen";
             this.lb_fullscreen.Size = new System.Drawing.Size(56, 17);
             this.lb_fullscreen.TabIndex = 9;
@@ -187,21 +210,11 @@
             this.lb_rectrec.AutoSize = true;
             this.lb_rectrec.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lb_rectrec.ForeColor = System.Drawing.Color.White;
-            this.lb_rectrec.Location = new System.Drawing.Point(11, 16);
+            this.lb_rectrec.Location = new System.Drawing.Point(20, 16);
             this.lb_rectrec.Name = "lb_rectrec";
             this.lb_rectrec.Size = new System.Drawing.Size(56, 17);
             this.lb_rectrec.TabIndex = 10;
             this.lb_rectrec.Text = "区域录制";
-            // 
-            // pb_preview
-            // 
-            this.pb_preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.pb_preview.Location = new System.Drawing.Point(1, 57);
-            this.pb_preview.Name = "pb_preview";
-            this.pb_preview.Size = new System.Drawing.Size(328, 250);
-            this.pb_preview.TabIndex = 7;
-            this.pb_preview.TabStop = false;
-            this.pb_preview.Paint += new System.Windows.Forms.PaintEventHandler(this.pb_preview_Paint);
             // 
             // timerPreview
             // 
@@ -214,9 +227,9 @@
             this.lb_recing_bottom.BackColor = System.Drawing.Color.Transparent;
             this.lb_recing_bottom.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_recing_bottom.ForeColor = System.Drawing.Color.White;
-            this.lb_recing_bottom.Location = new System.Drawing.Point(0, 1);
+            this.lb_recing_bottom.Location = new System.Drawing.Point(23, 1);
             this.lb_recing_bottom.Name = "lb_recing_bottom";
-            this.lb_recing_bottom.Size = new System.Drawing.Size(328, 40);
+            this.lb_recing_bottom.Size = new System.Drawing.Size(268, 40);
             this.lb_recing_bottom.TabIndex = 13;
             this.lb_recing_bottom.Text = "正在录制...";
             this.lb_recing_bottom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -226,40 +239,97 @@
             // 
             this.pl_footer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pl_footer.Controls.Add(this.btn_rec_mouse);
+            this.pl_footer.Controls.Add(this.btn_top);
+            this.pl_footer.Controls.Add(this.btn_rec_mic);
             this.pl_footer.Controls.Add(this.toggle_fullscreen);
             this.pl_footer.Controls.Add(this.btn_rec_sound);
             this.pl_footer.Controls.Add(this.lb_fullscreen);
             this.pl_footer.Controls.Add(this.lb_rectrec);
             this.pl_footer.Controls.Add(this.lb_recing_bottom);
-            this.pl_footer.Location = new System.Drawing.Point(1, 329);
+            this.pl_footer.Location = new System.Drawing.Point(1, 321);
             this.pl_footer.Name = "pl_footer";
             this.pl_footer.Size = new System.Drawing.Size(328, 35);
             this.pl_footer.TabIndex = 14;
             // 
+            // pl_rec_finish
+            // 
+            this.pl_rec_finish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.pl_rec_finish.Controls.Add(this.btn_open_reced);
+            this.pl_rec_finish.Controls.Add(this.btn_continue_rec);
+            this.pl_rec_finish.Controls.Add(this.lb_reced_info);
+            this.pl_rec_finish.Controls.Add(this.lb_reced_title);
+            this.pl_rec_finish.Controls.Add(this.pb_reced);
+            this.pl_rec_finish.Location = new System.Drawing.Point(1, 60);
+            this.pl_rec_finish.Name = "pl_rec_finish";
+            this.pl_rec_finish.Size = new System.Drawing.Size(328, 262);
+            this.pl_rec_finish.TabIndex = 15;
+            this.pl_rec_finish.Visible = false;
+            // 
+            // lb_reced_info
+            // 
+            this.lb_reced_info.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lb_reced_info.ForeColor = System.Drawing.Color.White;
+            this.lb_reced_info.Location = new System.Drawing.Point(0, 133);
+            this.lb_reced_info.Name = "lb_reced_info";
+            this.lb_reced_info.Size = new System.Drawing.Size(328, 45);
+            this.lb_reced_info.TabIndex = 2;
+            this.lb_reced_info.Text = "视频时长 00:00";
+            this.lb_reced_info.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lb_reced_title
+            // 
+            this.lb_reced_title.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_reced_title.ForeColor = System.Drawing.Color.White;
+            this.lb_reced_title.Location = new System.Drawing.Point(0, 110);
+            this.lb_reced_title.Name = "lb_reced_title";
+            this.lb_reced_title.Size = new System.Drawing.Size(328, 23);
+            this.lb_reced_title.TabIndex = 1;
+            this.lb_reced_title.Text = "录制成功！视频已保存";
+            this.lb_reced_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pb_reced
+            // 
+            this.pb_reced.Image = global::ScreenRecoder.App.Properties.Resources.ico_rec_success;
+            this.pb_reced.Location = new System.Drawing.Point(131, 40);
+            this.pb_reced.Name = "pb_reced";
+            this.pb_reced.Size = new System.Drawing.Size(64, 64);
+            this.pb_reced.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_reced.TabIndex = 0;
+            this.pb_reced.TabStop = false;
+            // 
+            // pb_preview
+            // 
+            this.pb_preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.pb_preview.Location = new System.Drawing.Point(1, 60);
+            this.pb_preview.Name = "pb_preview";
+            this.pb_preview.Size = new System.Drawing.Size(328, 262);
+            this.pb_preview.TabIndex = 7;
+            this.pb_preview.TabStop = false;
+            this.pb_preview.Paint += new System.Windows.Forms.PaintEventHandler(this.pb_preview_Paint);
+            // 
+            // btn_screen_shotcut
+            // 
+            this.btn_screen_shotcut.BackColor = System.Drawing.Color.Transparent;
+            this.btn_screen_shotcut.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btn_screen_shotcut.Icon = global::ScreenRecoder.App.Properties.Resources.ico_screenshotcct;
+            this.btn_screen_shotcut.IconSize = new System.Drawing.Size(32, 32);
+            this.btn_screen_shotcut.Light = false;
+            this.btn_screen_shotcut.Location = new System.Drawing.Point(205, 2);
+            this.btn_screen_shotcut.Name = "btn_screen_shotcut";
+            this.btn_screen_shotcut.PressedColor = System.Drawing.Color.Black;
+            this.btn_screen_shotcut.Size = new System.Drawing.Size(52, 60);
+            this.btn_screen_shotcut.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.btn_screen_shotcut, "截图");
+            this.btn_screen_shotcut.BtnClick += new System.EventHandler(this.btn_screen_shotcut_BtnClick);
+            // 
             // toggle_fullscreen
             // 
             this.toggle_fullscreen.Checked = false;
-            this.toggle_fullscreen.Location = new System.Drawing.Point(76, 9);
+            this.toggle_fullscreen.Location = new System.Drawing.Point(85, 9);
             this.toggle_fullscreen.Name = "toggle_fullscreen";
             this.toggle_fullscreen.Size = new System.Drawing.Size(32, 32);
             this.toggle_fullscreen.TabIndex = 8;
             this.toggle_fullscreen.CheckedChanged += new System.EventHandler(this.toggle_fullscreen_CheckedChanged);
-            // 
-            // btn_preview
-            // 
-            this.btn_preview.BackColor = System.Drawing.Color.Transparent;
-            this.btn_preview.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btn_preview.Icon = global::ScreenRecoder.App.Properties.Resources.ico_preview;
-            this.btn_preview.IconSize = new System.Drawing.Size(32, 32);
-            this.btn_preview.Light = false;
-            this.btn_preview.Location = new System.Drawing.Point(199, 2);
-            this.btn_preview.Name = "btn_preview";
-            this.btn_preview.PressedColor = System.Drawing.Color.Black;
-            this.btn_preview.Size = new System.Drawing.Size(52, 60);
-            this.btn_preview.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.btn_preview, "使用小窗预览模式");
-            this.btn_preview.BtnClick += new System.EventHandler(this.btn_preview_BtnClick);
             // 
             // btn_min
             // 
@@ -302,7 +372,7 @@
             this.btn_setting.Icon = global::ScreenRecoder.App.Properties.Resources.ico_settings;
             this.btn_setting.IconSize = new System.Drawing.Size(32, 32);
             this.btn_setting.Light = false;
-            this.btn_setting.Location = new System.Drawing.Point(248, 2);
+            this.btn_setting.Location = new System.Drawing.Point(254, 2);
             this.btn_setting.Name = "btn_setting";
             this.btn_setting.PressedColor = System.Drawing.Color.Black;
             this.btn_setting.Size = new System.Drawing.Size(52, 60);
@@ -347,7 +417,7 @@
             this.btn_start.Icon = global::ScreenRecoder.App.Properties.Resources.ico_record;
             this.btn_start.IconSize = new System.Drawing.Size(26, 26);
             this.btn_start.Light = false;
-            this.btn_start.Location = new System.Drawing.Point(1, 1);
+            this.btn_start.Location = new System.Drawing.Point(2, 2);
             this.btn_start.Name = "btn_start";
             this.btn_start.PressedColor = System.Drawing.Color.Black;
             this.btn_start.Size = new System.Drawing.Size(55, 60);
@@ -355,39 +425,76 @@
             this.toolTip1.SetToolTip(this.btn_start, "开始录制");
             this.btn_start.BtnClick += new System.EventHandler(this.btn_record_BtnClick);
             // 
+            // btn_open_reced
+            // 
+            this.btn_open_reced.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
+            this.btn_open_reced.BorderColor = System.Drawing.Color.Empty;
+            this.btn_open_reced.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_open_reced.ForeColor = System.Drawing.Color.White;
+            this.btn_open_reced.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.btn_open_reced.Image = null;
+            this.btn_open_reced.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_open_reced.Location = new System.Drawing.Point(74, 197);
+            this.btn_open_reced.Name = "btn_open_reced";
+            this.btn_open_reced.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btn_open_reced.Size = new System.Drawing.Size(86, 26);
+            this.btn_open_reced.TabIndex = 43;
+            this.btn_open_reced.Text = "浏览录像";
+            this.btn_open_reced.Click += new System.EventHandler(this.btn_open_reced_Click);
+            // 
+            // btn_continue_rec
+            // 
+            this.btn_continue_rec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
+            this.btn_continue_rec.BorderColor = System.Drawing.Color.Empty;
+            this.btn_continue_rec.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_continue_rec.ForeColor = System.Drawing.Color.White;
+            this.btn_continue_rec.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.btn_continue_rec.Image = null;
+            this.btn_continue_rec.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_continue_rec.Location = new System.Drawing.Point(166, 197);
+            this.btn_continue_rec.Name = "btn_continue_rec";
+            this.btn_continue_rec.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btn_continue_rec.Size = new System.Drawing.Size(86, 26);
+            this.btn_continue_rec.TabIndex = 42;
+            this.btn_continue_rec.Text = "继续录像";
+            this.btn_continue_rec.Click += new System.EventHandler(this.btn_continue_rec_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(330, 376);
+            this.ClientSize = new System.Drawing.Size(330, 368);
+            this.Controls.Add(this.btn_screen_shotcut);
             this.Controls.Add(this.pl_footer);
-            this.Controls.Add(this.pb_preview);
-            this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.btn_min);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.pl_rec);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.lb_tip);
+            this.Controls.Add(this.pl_rec_finish);
+            this.Controls.Add(this.pb_preview);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "屏幕录像";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormMain_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.btn_rec_mouse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_top)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_rec_mic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_rec_sound)).EndInit();
             this.pl_rec.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_preview)).EndInit();
             this.pl_footer.ResumeLayout(false);
             this.pl_footer.PerformLayout();
+            this.pl_rec_finish.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_reced)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_preview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_min)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).EndInit();
             this.ResumeLayout(false);
@@ -412,7 +519,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 显示主窗口ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出软件ToolStripMenuItem;
-        private IconButton btn_preview;
         private System.Windows.Forms.PictureBox pb_preview;
         private Controls.Toggle toggle_fullscreen;
         private System.Windows.Forms.Label lb_fullscreen;
@@ -420,7 +526,15 @@
         private System.Windows.Forms.Timer timerPreview;
         private System.Windows.Forms.Label lb_recing_bottom;
         private System.Windows.Forms.Panel pl_footer;
-        public System.Windows.Forms.PictureBox btn_rec_mouse;
+        public System.Windows.Forms.PictureBox btn_rec_mic;
         public System.Windows.Forms.PictureBox btn_rec_sound;
+        private System.Windows.Forms.Panel pl_rec_finish;
+        private System.Windows.Forms.PictureBox pb_reced;
+        private System.Windows.Forms.Label lb_reced_info;
+        private System.Windows.Forms.Label lb_reced_title;
+        private Controls.FlatButton btn_open_reced;
+        private Controls.FlatButton btn_continue_rec;
+        private IconButton btn_screen_shotcut;
+        public System.Windows.Forms.PictureBox btn_top;
     }
 }
