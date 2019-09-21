@@ -17,8 +17,12 @@ namespace ScreenRecoder.App.PaintBox
         {
             using (Pen pen = new Pen(Color, Thickness))
             {
-                pen.StartCap = LineCap.Round;
-                pen.EndCap = LineCap.ArrowAnchor;
+                int wArrowCapSize = 6;
+                if (Thickness == 2) wArrowCapSize = 7;
+                if (Thickness == 4) wArrowCapSize = 9;
+                AdjustableArrowCap lineCap = new AdjustableArrowCap(wArrowCapSize, wArrowCapSize, true);
+                pen.StartCap = LineCap.Triangle;
+                pen.CustomEndCap = lineCap;
                 g.DrawLine(pen, start, end);
             }
             base.Paint(g, thisBitmap, baseBitmap);

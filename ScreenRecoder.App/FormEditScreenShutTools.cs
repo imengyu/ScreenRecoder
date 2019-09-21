@@ -44,7 +44,7 @@ namespace ScreenRecoder.App
         public Color CurrentColor { get; set; } = Color.Red;
         public int CurrentMosaicLevel { get; set; } = 3;
         public Font CurrentFont { get; set; } = new Font("微软雅黑", 9);
-        public PaintPenWidth CurrentPenWidth { get; set; } = PaintPenWidth.Thing;
+        public PaintPenWidth CurrentPenWidth { get; set; } = PaintPenWidth.Normal;
 
         private void pl_base_tools_Paint(object sender, PaintEventArgs e)
         {
@@ -97,7 +97,6 @@ namespace ScreenRecoder.App
 
             track_mosaic_level.Value = CurrentMosaicLevel;
         }
-
 
         private void colorToolbar2_ChoosedColorChanged(object sender, EventArgs e)
         {
@@ -214,8 +213,7 @@ namespace ScreenRecoder.App
             }
         }
         private void btn_pen_Click(object sender, EventArgs e)
-        {
-         
+        {       
             if (checkGroupTools.Checked((TabButton)sender))
             {
                 checkGroupTools.UnCheck((TabButton)sender);
@@ -233,7 +231,6 @@ namespace ScreenRecoder.App
         }
         private void btn_arrwo_Click(object sender, EventArgs e)
         {
-            
             if (checkGroupTools.Checked((TabButton)sender))
             {
                 checkGroupTools.UnCheck((TabButton)sender);
@@ -246,7 +243,7 @@ namespace ScreenRecoder.App
                 CurrentTools = PaintTools.Arrow;
                 checkGroupTools.Check((TabButton)sender);
                 swPenCur();
-                swNoneTool();
+                swPenTool();
             }
         }
         private void btn_mosaic_Click(object sender, EventArgs e)
@@ -327,7 +324,7 @@ namespace ScreenRecoder.App
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= API.WS_EX_TRANSPARENT;
+                //cp.ExStyle |= API.WS_EX_TRANSPARENT;
                 cp.ExStyle |= API.WS_EX_TOOLWINDOW;
                 return cp;
             }
